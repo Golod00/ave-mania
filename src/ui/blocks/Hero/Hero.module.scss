@@ -1,0 +1,307 @@
+.heroSection {
+    position: relative;
+    padding-top: 120px;
+    overflow: hidden;
+
+    @media screen and (min-width: $toggleDesktop) {
+        padding-top: 160px;
+    }
+
+    h2 {
+        min-width: 180px;
+        text-align: center;
+    }
+
+    .heroMain {
+        display: flex;
+        flex-direction: column;
+        gap: 76px;
+
+        @media screen and (min-width: $toggleDesktop) {
+            flex-direction: row;
+            gap: 0;
+        }
+
+        .heroContent {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+
+            @media screen and (min-width: $toggleDesktop) {
+                gap: 32px;
+                margin-top: 170px;
+            }
+
+            .heroMainImg {
+                img {
+                    width: 100%;
+                    height: auto;
+
+                    @media screen and (min-width: $toggleDesktop) {
+                        min-width: 556px;
+                    }
+                }
+            }
+
+            .title {
+                max-width: 180px;
+                margin: 0 auto;
+                @include p16;
+                font-weight: 800;
+                color: $color-text;
+
+                @media screen and (min-width: $toggleDesktop) {
+                    max-width: 100%;
+                    margin: initial;
+                    font-size: 24px;
+                }
+
+            }
+
+            .btnWrapper {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 2px;
+
+                @media screen and (min-width: $toggleDesktop) {
+                    gap: 8px;
+                }
+
+                button {
+                    text-wrap-mode: nowrap;
+                }
+            }
+
+            .bgIcons {
+
+                .bgIconsItem1,
+                .bgIconsItem2,
+                .bgIconsItem3,
+                .bgIconsItem4,
+                .bgIconsItem5,
+                .bgIconsItemMob {
+                    position: absolute;
+                }
+
+                .bgIconsItemMob {
+                    top: -10%;
+                    left: 10%;
+
+                    @media screen and (min-width: $toggleDesktop) {
+                        display: none;
+                    }
+                }
+
+                .bgIconsItem1 {
+                   bottom: -40%;
+                    left: -18%;
+
+                    @media screen and (min-width: $toggleDesktop) {
+                        bottom: 28%; 
+                    }
+                }
+
+                .bgIconsItem2 {
+                    top: 50%;
+                    right: -30%;
+
+                    @media screen and (min-width: $toggleDesktop) {
+                        top: initial;
+                        left: initial;
+                        right: 30%;
+                        bottom: 5%;
+                    }
+                }
+
+                .bgIconsItem3 {
+                    bottom: -40%;
+                    right: 20px;
+                    z-index: 1;
+
+                    @media screen and (min-width: $toggleDesktop) {
+                        right: 20px;
+                        bottom: 14%;
+                    }
+                }
+
+                .bgIconsItem4 {
+                    display: none;
+
+                    @media screen and (min-width: $toggleDesktop) {
+                        display: block;
+                        top: 0;
+                        left: -19px;
+                    }
+                }
+
+                .bgIconsItem5 {
+                    display: none;
+
+                    @media screen and (min-width: $toggleDesktop) {
+                        display: block;
+                        top: -30%;
+                        left: 80%;
+                    }
+                }
+            }
+        }
+
+        .heroImg {
+            position: relative;
+
+            .heroImgbg {
+                margin-right: -16px;
+
+                @media screen and (min-width: $toggleDesktop) {
+                    position: relative;
+                    right: -29%;
+                }
+            }
+
+            .heroImgWrap {
+                position: absolute;
+                bottom: 0;
+                width: 100%;
+
+                .photo1 {
+                    position: absolute;
+                    left: -60px;
+                    bottom: 0;
+                    width: 335px;
+                    height: auto;
+                    z-index: 1;
+
+                    @media screen and (min-width: 768px) {
+                        width: 638px;
+                    }
+
+                    @media screen and (min-width: $toggleDesktop) {
+                        width: 638px;
+                        height: auto;
+                    }
+                }
+
+                .photo2 {
+                    position: absolute;
+                    right: -30px;
+                    bottom: 0;
+                    width: 250px;
+                    height: auto;
+                    z-index: 1;
+
+                    @media screen and (min-width: 768px) {
+                        width: 440px;
+                    }
+
+                    @media screen and (min-width: $toggleDesktop) {
+                        width: 490px;
+                        right: -130px;
+                    }
+                }
+
+                .heroImgWrapDop2 {
+                    display: none;
+
+                    @media screen and (min-width: $toggleDesktop) {
+                        display: block;
+                        position: absolute;
+                        right: -130px;
+                        bottom: 0;
+                        z-index: 2;
+                    }
+                }
+            }
+
+            img {
+                width: 100%;
+                height: auto;
+
+                @media screen and (min-width: 1600px) {
+                    width: 130%;
+                    height: 800px;
+                }
+            }
+        }
+    }   
+
+    .heroTextMain {
+
+        @media screen and (min-width: $toggleDesktop) {
+            margin-top: -10px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .heroTextContainer {
+            padding: 0;
+
+            @media screen and (min-width: $toggleDesktop) {
+                max-width: 1240px;
+                margin: 0 auto;
+                padding: 0 16px;
+            }
+        }
+
+        .heroInformation {
+            padding: 32px 16px;
+            background: #F3F3F3;
+            border-radius: 35px;
+
+            @media screen and (min-width: $toggleDesktop) {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                align-items: center;
+                gap: 55px;
+                padding: 32px 78px;
+            }
+        }
+
+        .informationLogo {
+            padding: 0 18px 16px;
+            margin-bottom: 16px;
+            border-bottom: 1px solid 0000006b;
+
+            @media screen and (min-width: $toggleDesktop) {
+                padding: 0 ;
+                margin-bottom: 0;
+                border-bottom: none;
+                margin-bottom: 0;
+            }
+        }
+
+        .informationText {
+
+            @media screen and (min-width: $toggleDesktop) {
+                padding-left: 55px;
+                border-left: 1px solid #0000006b;
+            }
+        }
+
+        .btnWrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            @media screen and (min-width: $toggleDesktop) {
+                gap: 8px; 
+            }
+
+            button {
+                text-wrap-mode: nowrap;
+            }
+        }
+
+        .text {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-bottom: 25px;
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 140%;
+            letter-spacing: -2%;
+        }
+    }
+}

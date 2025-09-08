@@ -1,0 +1,191 @@
+
+.categoriesWorkers {
+    position: relative;
+    margin-top: 100px;
+    margin-bottom: 100px;
+
+    @media screen and (min-width: $toggleDesktop) {
+        margin-top: 140px;
+        margin-bottom: 140px;
+    }
+
+    .title {
+        margin-bottom: 32px;
+        font-weight: 900;
+        font-size: 36px;
+        line-height: 100%;
+        letter-spacing: -3%;
+        text-align: center;
+    }
+
+    .wrapper {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+
+        @media screen and (min-width: $toggleDesktop) {
+            flex-direction: row;
+            justify-content: center;
+        }
+
+        .item {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 336px;
+            padding: 46px 16px;
+            border-radius: 40px;
+
+            @media screen and (min-width: $toggleDesktop) {
+                min-width: 329px;
+                max-width: 400px;
+                height: 429px;
+            }
+
+            .wrapImg {
+                position: absolute;
+                left: 50%;
+                transform: translateX(-50%);
+                bottom: -6px;
+
+                @media screen and (min-width: $toggleDesktop) {
+                    bottom: -12px;
+                }
+
+                img {
+                    width: auto;
+                    height: 193px;
+
+                    @media screen and (min-width: $toggleDesktop) {
+                        height: 285px;
+                    }
+                }
+
+                .image {
+                    position: absolute;
+                    bottom: 0;
+                    right: -5% !important;
+                    width: auto;
+                    height: 263px;   
+                }
+
+                .image2,
+                .image3  {
+                    position: absolute;
+                    bottom: -10px;
+                }
+            }
+
+            .wrapImgMain {
+                position: absolute;
+                bottom: -13px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 250px;
+
+                @media screen and (min-width: $toggleDesktop) {
+                    width: 100%;
+                }
+
+                .image2 {
+                    
+                    img {
+                        width: auto;
+                        height: 147px;
+
+                        @media screen and (min-width: $toggleDesktop) {
+                            height: 216px;
+                        }
+                    }
+                }
+
+                .image3 {
+                    position: absolute;
+                    right: 19px;
+                    bottom: -15px;
+
+                    @media screen and (min-width: $toggleDesktop) {
+                        right: 15px;
+                    }
+
+                    img {
+                        width: auto;
+                        height: 173px;
+
+                        @media screen and (min-width: $toggleDesktop) {
+                            height: 254px;
+                        }
+                    }
+                }
+            }
+
+            .wrapImgItem {
+                position: absolute;
+                bottom: 0;
+                right: 0;
+                width: 100%;
+                height: auto;
+            }
+
+            p {
+                max-width: 336px;
+                margin: 0 auto;
+                font-weight: 800;
+                font-size: 24px;
+                line-height: 100%;
+                text-align: center;
+                color: #fff;
+            }
+
+            span {
+                display: block;
+                margin-top: 8px;
+                font-weight: 500;
+                font-size: 16px;
+                line-height: 140%;
+                text-align: center;
+                color: #fff;
+            }
+
+            &.yellow {
+                background: #FBBA09;
+            }
+
+            &.red {
+                background: #E30613;
+            }
+
+            &.blue {
+                background: #1280C4;
+            }
+        }
+    }
+
+    .wrapImage {
+        display: none;
+
+        @media screen and (min-width: $toggleDesktop) {
+            display: block;
+        }
+
+        .wrapImageBg {
+            position: absolute;
+            right: 0;
+            bottom: -70%;
+
+            img {
+                width: auto;
+                height: 477px;
+            }
+        }
+
+        .wrapImageIcon {
+            position: absolute;
+            right: 0;
+            bottom: -150px;
+            right: 75px;
+        }
+    }
+}

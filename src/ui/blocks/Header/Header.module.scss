@@ -1,0 +1,106 @@
+.wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding-inline: 16px;
+    z-index: 10;
+    background-color: #fff;
+
+    @media screen and (min-width: $toggleDesktop) {
+        left: 50%;
+        transform: translateX(-50%);
+
+        &.sidePage {
+            transform: translateX(0);
+        }
+    }
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 16px 0;
+
+    a {
+        svg {
+            width: 121px;
+            height: 27px;
+
+            @media screen and (min-width: $toggleDesktop) {
+                width: 222px;
+                height: 50px;
+            }
+        }
+    }
+
+    .burgerButton {
+        background-color: transparent;
+
+        @media screen and (min-width: $toggleDesktop) {
+            display: none;
+        }
+    }
+
+    .HeaderMenuContainer {
+        display: none;
+
+        @media screen and (min-width: $toggleDesktop) {
+            display: block;
+        }
+    }
+}
+
+.mobileMenu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    transform: translateY(-100%);
+    display: flex;
+    flex-direction: column;
+    gap: 112px;
+    width: 100%;
+    height: 100vh;
+    background: #fff;
+    opacity: 0;
+    overflow: hidden;
+    z-index: 10;
+
+    &.active {
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+    .close {
+        position: absolute;
+        top: 0;
+        right: 0;
+        padding: 16px;
+        background: #fff;
+    }
+    .backgroundWrapper {
+
+        img {
+            width: 100%;
+            height: auto;
+        }
+
+        .background {
+            position: absolute;
+            right: 0;
+            bottom: -3px;
+            z-index: -1;
+
+            .imgFirst {
+                max-width: 220px;
+            }
+
+            .imgSecond {
+                padding-right: 70px;
+                padding-bottom: 70px;
+            }
+        }
+    }
+}

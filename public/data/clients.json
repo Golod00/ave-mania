@@ -1,0 +1,54 @@
+{
+    "clients": [
+        {
+            "id": 0,
+            "link": "https://everymatrix.com/",
+            "image": "/images/clients/matrics.webp"
+        },
+        {
+            "id": 1,
+            "link": "https://www.pwc.com/",
+            "image": "/images/clients/pwc.svg"
+        },
+        {
+            "id": 2,
+            "link": "https://clhs.com.ua",
+            "image": "/images/clients/kliring.webp"
+        },
+        {
+            "id": 3,
+            "link": "https://www.giz.de",
+            "image": "/images/clients/giz.webp"
+        },
+        {
+            "id": 4,
+            "link": "https://www.man.eu",
+            "image": "/images/clients/man.webp"
+        },
+        {
+            "id": 5,
+            "link": "https://www.lexus.com/",
+            "image": "/images/clients/lexus.svg"
+        },
+        {
+            "id": 6,
+            "link": "http://grand-hotel-ukraine.dp.ua/",
+            "image": "/images/clients/grandhotel.webp"
+        },
+        {
+            "id": 7,
+            "link": "https://genesis-clinic.com.ua/",
+            "image": "/images/clients/genesis.webp"
+        },
+        {
+            "id": 8,
+            "link": "https://www.okko.ua/",
+            "image": "/images/clients/oko.svg"
+        },
+        {
+            "id": 9,
+            "link": "https://meest.com/",
+            "image": "/images/clients/meest.webp"
+        }
+    ]
+}

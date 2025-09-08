@@ -1,0 +1,70 @@
+// Colors
+$color-primary: #222121;
+$color-accent: #E30613;
+$color-dark: #000;
+$color-white: #fff;
+$color-grey: #313030;
+$color-light: #3A3A3A;
+$color-text: #1B1B1B;
+$bg-yellow: #FBBA09;
+
+
+
+// Fonts
+$font-main: 'Inter', sans-serif;
+
+@mixin p18 {
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 130%;
+}
+@mixin p14 {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 130%;
+}
+@mixin p16 {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 100%;
+}
+
+// Containers
+$container-width: 1240px;
+$transition-speed: 0.3s;
+$paddingBlock: 80px;
+$paddingBlockDesktop: 80px;
+
+//Trigers
+$toggleTablet: 768px;
+$toggleDesktop: 1240px;
+
+// Mixins
+@mixin flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@mixin container {
+    max-width: $container-width;
+    margin: 0 auto;
+}
+
+@mixin customScrollerPad {
+    &::-webkit-scrollbar {
+        width: 4px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: $color-accent;
+    }
+    & * {
+        scrollbar-width: thin;
+        scrollbar-color: $color-accent transparent;
+    }
+}

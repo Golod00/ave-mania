@@ -1,0 +1,80 @@
+@import './variables.scss';
+
+html {
+    scroll-behavior: smooth;
+}
+body {
+    font-family: var(--font-inter), sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    line-height: 1;
+    min-width: 375px;
+    @include customScrollerPad;
+    overflow-x: hidden;
+
+    * {
+        box-sizing: border-box;
+        transition: 0.3s ease all;
+    }
+}
+
+h2 {
+    font-size: 40px;
+    font-weight: 900;
+    letter-spacing: -0.8px;
+}
+
+.container {
+    @include container;
+    padding: 0 16px;
+}
+.container7030 {
+    display: flex;
+    flex-direction: column;
+}
+
+@media screen and (min-width: $toggleTablet) {
+    h2 {
+        font-size: 58px;
+        font-weight: 900;
+        line-height: 100%;
+        letter-spacing: -1.56px;
+    }
+}
+
+@media screen and (min-width: $toggleDesktop) {
+    h2 {
+        font-size: 78px;
+        font-weight: 900;
+        line-height: 100%;
+        letter-spacing: -1.56px;
+    }
+    .container {
+        padding: 0 0;
+        width: $container-width;
+    }
+
+    .container7030 {
+        flex-direction: row;
+        gap: 20px;
+
+        > aside {
+            width: 485px !important;
+        }
+        > * {
+            width: calc(100% - 505px);
+            flex-shrink: 0;
+            flex-grow: 0;
+        }
+    }
+}
+
+img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+button {
+    outline: none;
+    border: none;
+}

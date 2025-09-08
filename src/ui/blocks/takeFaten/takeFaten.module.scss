@@ -1,0 +1,173 @@
+
+.takeFaten {
+    position: relative;
+    margin-top: 100px;
+    margin-bottom: 200px;
+
+    @media screen and (min-width: $toggleDesktop) {
+        margin-top: 140px;
+        margin-bottom: 240px;
+    }
+
+    .title {
+        margin-bottom: 32px;
+        font-weight: 900;
+        font-size: 36px;
+        line-height: 100%;
+        letter-spacing: -3%;
+        text-align: center;
+    }
+
+    .wrapper {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+
+        @media screen and (min-width: $toggleDesktop) {
+            flex-direction: row;
+            justify-content: center;
+        }
+
+        .item {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-width: 290px;
+            padding: 60px 40px;
+            border-radius: 60px;
+
+            @media screen and (min-width: $toggleDesktop) {
+                height: 263px;
+            }
+
+            .wrapImgItem {
+                position: absolute;
+                bottom: 0;
+                right: 0;
+                width: 100%;
+                height: auto;
+            }
+
+            p {
+                max-width: 210px;
+                margin-top: 24px;
+                font-weight: 800;
+                font-size: 24px;
+                line-height: 100%;
+                text-align: center;
+                color: #fff;
+            }
+
+            &.yellow {
+                background: #FBBA09;
+            }
+
+            &.red {
+                background-color: #E30613;
+            }
+
+            &.blue {
+                background: #1280C4;
+            }
+        }
+
+        .wrapperbottom {
+            margin-top: 31px;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            top: 100%;
+            width: 100%;
+
+            .lines {
+                display: flex;
+                justify-content: center;
+
+                .linesleft,
+                .linesRight {
+
+                    svg {
+                        width: 100%; 
+                    }
+                }
+                .linesleft {
+
+                    svg {
+                        margin-right: -2px;
+                    }
+                }
+
+                .linesRight {
+
+                    svg {
+                        margin-left: -5px;
+                    }
+                }
+
+            }
+
+            .text {
+                max-width: 350px;
+                margin: 0 auto;
+                font-family: overdoze sans;
+                font-weight: 700;
+                font-size: 35.53px;
+                line-height: 100%;
+                text-align: center;
+                color: #000;
+                transform: rotate(21deg);
+                margin-top: 50px;
+            }
+        }
+    }
+
+    .bgwrap {
+        display: none;
+
+        @media screen and (min-width: $toggleDesktop) {
+           display: block;
+        }
+     
+        .bgLeft {
+            position: absolute;
+            left: 0;
+
+            .itemOne {
+
+                img {
+                    max-width: max-content;
+                    max-height: 596px;
+                }
+            }
+
+            .itemTwo {
+                position: absolute;
+                top: 0;
+                left: 40px;
+                z-index: -1;
+            }
+
+            .itemThree {
+                position: absolute;
+                bottom: 80px;
+                left: 40px;
+            }
+            
+        }
+
+        .bgRight {
+            position: absolute;
+            bottom: -400px;
+            right: 0;
+            
+            .itemTwo {
+                position: absolute;
+                top: -50px;
+                left: -50px;
+                z-index: 2;
+            }
+        }
+    }
+}

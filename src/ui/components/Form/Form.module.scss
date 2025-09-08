@@ -1,0 +1,39 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin-bottom: 64px;
+
+    fieldset {
+        width: 100%;
+
+        label {
+            display: none;
+        }
+        input {
+            background-color: transparent;
+            border: none;
+            outline: none;
+            border-bottom: 1px solid $color-white;
+            width: 100%;
+            padding-bottom: 16px;
+            color: $color-white;
+            @include p16;
+
+            &::placeholder {
+                opacity: 0.4;
+            }
+        }
+    }
+    button {
+        margin-top: 8px;
+    }
+}
+
+@media screen and (min-width: $toggleDesktop) {
+    .form {
+        padding-right: 105px;
+        margin-bottom: 0;
+        align-items: center;
+    }
+}

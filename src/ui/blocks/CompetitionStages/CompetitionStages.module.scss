@@ -1,0 +1,335 @@
+.competitionStages {
+    margin-top: 287px;
+    margin-bottom: 100px;
+    overflow: visible;
+    overflow-x: clip;
+
+    @media screen and (min-width: $toggleDesktop) {
+        margin-top: 140px;
+        margin-bottom: 140px;
+    }
+
+    .wrapper {
+        position: relative;
+
+        .wrapperImage {
+            
+            .image,
+            .iconOne,
+            .iconThree {
+                position: absolute;
+                width: 100%;
+            }
+
+            .image {
+                top: -10%;
+                left: -40%;
+                z-index: -1;
+                max-width: 596px;
+
+                @media screen and (min-width: $toggleDesktop) {
+                    top: -15%;
+                    left: 0;
+                }
+            }
+
+            .iconOne {
+                top: -5%;
+                left: 55%;
+
+                @media screen and (min-width: $toggleDesktop) {
+                    top: -8%;   
+                    left: 32%;
+                }
+            }
+
+            .iconThree  {
+                top: -13%;
+                left: 15%;
+
+                @media screen and (min-width: 768px) {
+                    top: -9%;
+                }
+
+                @media screen and (min-width: $toggleDesktop) {
+                    top: -18%;
+                    left: 5%;
+                }
+            }
+
+            .iconTwo {
+                display: none;
+
+                @media screen and (min-width: $toggleDesktop) {
+                    display: block;
+                    position: absolute;
+                    top: -8%;
+                    right: 5%;
+                }
+            }
+        }
+
+        .wrapperBg {
+            position: relative;
+            z-index: -1;
+
+            .imageMob {
+
+                @media screen and (min-width: $toggleDesktop) {
+                    display: none;
+                }
+
+                img {
+                    max-height: 1145px;
+                    object-fit: fill;
+                }
+            }
+
+            .imageDc {
+                display: none;
+
+                @media screen and (min-width: $toggleDesktop) {
+                    display: block;
+                }
+
+                img {
+                    max-height: 824px;
+                    object-fit: fill;
+                }
+            }
+
+            .blockContent {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+
+                .title {
+                    padding-top: 104px;
+                    padding-bottom: 32px;
+                    font-family: Onest;
+                    font-weight: 900;
+                    font-size: 36px;
+                    line-height: 100%;
+                    letter-spacing: -3%;
+                    text-align: center;
+                    color: #fff;
+                }
+
+                .mainWrap {
+                    display: flex;
+                    flex-wrap: wrap;
+                    align-items: center;
+                    gap: 56px 32px;
+                    max-width: 350px;
+                    margin: 0 auto;
+
+                    @media screen and (min-width: $toggleDesktop) {
+                        max-width: 100%;
+                    }
+
+                    .mainItem {
+                        position: relative;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        flex: 1 1 40%;
+
+                        @media screen and (min-width: $toggleDesktop) {
+                            flex: 1 1 25%;
+                        }
+
+                        img {
+                            max-width: 90px;
+                            max-height: 90px;
+                        }
+
+                        p {
+                            margin-top: 16px;
+                            font-weight: 800;
+                            font-size: 24px;
+                            line-height: 100%;
+                            letter-spacing: -2%;
+                            text-align: center;
+                            color: #fff;
+
+                            @media screen and (min-width: $toggleDesktop) {
+                                max-width: 210px;
+                                margin: 0 auto;
+                            }
+                        }
+
+                        .wrapIconMob,
+                        .wrapIconMob3,
+                        .wrapIconMob4,
+                        .wrapIconMob5,
+                        .wrapIconMob6 {
+                            position: absolute;
+
+                            @media screen and (min-width: $toggleDesktop) {
+                                display: none;
+                            }
+                        }
+                        
+                        .wrapIconMob {
+                            top: 40%;
+                            left: 90%;
+                            transform: translateY(-50%);
+                            z-index: 100;
+                            width: 100%;
+                        }
+
+                        .wrapIconMob3 {
+                            top: -30%;
+                            left: 0;
+                        }
+
+                        .wrapIconMob4 {
+                            top: 20%;
+                            left: -37%;
+                            transform: translateY(-50%);
+                        }
+
+                        .wrapIconMob5 {
+                            top: -40%;
+                            left: 0;
+                        }
+                        
+                        .wrapIconMob6 {
+                            top: 30%;
+                            left: -37%;
+                            transform: translateY(-50%);
+                        }
+
+                        //Desctop
+                        .wrapIconDc,
+                        .wrapIconDc1,
+                        .wrapIconDc2,
+                        .wrapIconDc3,
+                        .wrapIconDc4,
+                        .wrapIconDc5 {
+                            display: none;
+                            position: absolute;
+
+                            @media screen and (min-width: $toggleDesktop) {
+                                display: block;
+                            }
+                        }
+                        
+                        .wrapIconDc {
+                            top: 0;
+                            right: -35%;
+                        }
+
+                        .wrapIconDc1 {
+                            top: 20%;
+                            right: -35%;
+                        }
+
+                        .wrapIconDc2 {
+                            top: 20%;
+                            right: -5%;
+                        }
+
+                        .wrapIconDc3 {
+                            top: 30%;
+                            left: 0%;
+                        }
+                        
+                        .wrapIconDc4 {
+                            top: 30%;
+                            left: -40%;
+                        }
+
+                        .wrapIconDc5 {
+                            top: 30%;
+                            left: -40%;
+                        }
+                    }
+                }
+
+                .mainBottomWrap {
+                
+                    .wrapperIcons {
+                        position: relative;
+                        display: flex;
+                        justify-content: center;
+                        margin-top: 77px;
+
+                        @media screen and (min-width: $toggleDesktop) {
+                           margin-top: 0;
+                        }
+
+                        .textIcon {
+                            position: absolute;
+                            top: -26px;
+                            margin-right: 180px;
+
+                            @media screen and (min-width: $toggleDesktop) {
+                                width: 300px;
+                                height: 300px;
+                                margin-right: 450px;
+                            }
+                        }
+
+                         .icon {
+
+                            @media screen and (min-width: $toggleDesktop) {
+                                width: 350px;
+                                height: 350px;
+                            }
+                        }
+
+                        .icon2 {
+                            display: none;
+
+                            @media screen and (min-width: $toggleDesktop) {
+                                display: block;
+                                position: absolute;
+                                top: 10%;
+                                margin-left: 350px;
+                            }
+                        }
+                    }
+                }
+
+                .bg {
+
+                    .wrapImg,
+                    .wrapImgTwo {
+                        position: absolute;
+                        right: 0;
+                        bottom: 0;
+                    }
+
+                    .wrapImg {
+                        z-index: 2;
+                        bottom: -5%;
+                    }
+
+                    .wrapImgTwo {
+                        z-index: 0;
+
+                        @media screen and (min-width: $toggleDesktop) {
+                            top: 50%;
+                            transform: translateY(-50%);
+                        }
+                    }
+
+                    .wrapImgеThree {
+                        display: none;
+
+                        @media screen and (min-width: $toggleDesktop) {
+                            position: absolute;
+                            top: 50%;
+                            transform: translateY(-50%);
+                            left: 0;
+                            display: block;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

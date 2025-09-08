@@ -1,0 +1,55 @@
+.container {
+    display: flex;
+    flex-direction: column;
+
+    @media screen and (min-width: $toggleDesktop) {
+        flex-direction: row;
+    }
+}
+
+.navigation {
+    position: relative;
+    z-index: 20;
+}
+
+.logoWrapper {
+    padding: 16px;
+
+    @media screen and (min-width: $toggleDesktop) {
+        display: none;
+    }
+
+    a svg {
+        width: 121px;
+        height: 27px;
+    }
+}
+
+.wrapperNavMain {
+   display: flex;
+   flex-direction: column;
+   gap: 48px;
+
+   .aditionalLinks {
+        max-width: max-content;
+        margin: 0 auto;
+
+        @media screen and (min-width: $toggleDesktop) {
+            display: none;
+        }
+    }
+}
+
+.link {
+    display: block;
+    text-align: center;
+    padding: 16px;
+    color: $color-dark;
+    @include p16;
+    text-decoration: none;
+    white-space: nowrap;
+
+    &:hover {
+        color: $color-accent;
+    }
+}

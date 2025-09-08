@@ -1,0 +1,119 @@
+.wrapper {
+    position: relative;
+    margin-top: 100px;
+    padding-top: 200px;
+    padding-bottom: 200px;
+    overflow: hidden;
+
+    .title {
+        margin-bottom: 32px;
+        font-family: Onest;
+        font-weight: 900;
+        font-size: 36px;
+        line-height: 100%;
+        text-align: center;
+        color: $color-primary;
+    }
+
+    .mainBlock {
+        display: flex;
+        flex-direction: column;
+        gap: 44px;
+
+        @media screen and (min-width: $toggleDesktop) {
+            flex-direction: row;
+            gap: 125px;
+        }
+
+        .slide {
+
+
+            .info {
+
+            }
+
+            .city {
+                display: flex;
+                align-items: center;
+                column-gap: 16px;
+                margin-bottom: 18px;
+                font-family: overdoze sans;
+                font-weight: 700;
+                font-size: 35.53px;
+                color: $color-accent;
+            }
+
+            .title {
+                position: relative;
+                max-width: 400px;
+                margin-bottom: 24px;
+                padding-bottom: 16px;
+                text-align: left;
+                font-family: Inter;
+                font-weight: 800;
+                font-size: 24px;
+                line-height: 100%;
+                color: $color-primary;
+
+                @media screen and (min-width: $toggleDesktop) {
+                    padding-bottom: 32px;
+                }
+
+                .lineWrap {
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                }
+            }
+
+            .category {
+                margin-bottom: 24px;
+                font-family: Inter;
+                font-weight: 500;
+                font-size: 16px;
+
+                span {
+                    display: block;
+                    margin-bottom: 4px;
+                    font-weight: 700;
+                    color: $color-accent;
+                }
+            }
+
+            .result {
+                font-family: Inter;
+                font-weight: 500;
+                font-size: 16px;
+                color: $color-light;
+
+                span {
+                    font-weight: 700;
+                    color: $color-accent;
+                }
+            }
+        }
+
+        .imageWrap {
+
+            img {
+
+                @media screen and (min-width: $toggleDesktop) {
+                    width: 610px;
+                }
+            }
+        }
+    }
+
+    .bg {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        z-index: -1;
+
+        img {
+            width: 100%;
+            height: auto;
+        }
+    }
+
+}
