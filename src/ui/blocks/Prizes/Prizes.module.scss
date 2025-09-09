@@ -1,0 +1,88 @@
+
+.prizes {
+    position: relative;
+    height: 100vh;
+    max-height: 600px;
+    margin-top: 100px;
+    margin-bottom: 100px;
+
+    @media screen and (min-width: $toggleDesktop) {
+        margin-top: 140px;
+        margin-bottom: 140px;
+    }
+
+    .title {
+        margin-bottom: 32px;
+        font-weight: 900;
+        font-size: 36px;
+        line-height: 100%;
+        text-align: center;
+    }
+
+    .content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 24px;
+
+        @media screen and (min-width: $toggleDesktop) {
+            max-width: 720px;
+            margin: 0 auto;
+        }
+
+        .text {
+            font-family: Inter;
+            font-weight: 800;
+            font-size: 24px;
+            line-height: 100%;
+            text-align: center;
+            color: $color-primary;
+        }
+    }
+
+    .wrapImageBg {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        z-index: -1;
+    }
+
+    .wrapImageIcon {
+        position: absolute;
+        right: 36px;
+        bottom: 96px;
+        display: flex;
+        align-items: center;
+
+        @media screen and (min-width: $toggleDesktop) {
+            bottom: 44%;
+            right: initial;
+            left: 69%;
+            transform: translateX(-50%);
+        }
+
+        .text {
+            position: absolute;
+            top: 50%;
+            right: -70px;
+            transform: translateY(-50%) rotate(23deg);
+            z-index: 2;
+            min-width: 200px;
+            font-family: overdoze sans;
+            font-weight: 700;
+            font-size: 27.91px;
+            line-height: 80%;
+            text-align: center;
+            color: $color-light;
+
+            @media screen and (min-width: $toggleDesktop) {
+                right: -57px;
+                transform: translateY(-50%) rotate(9deg);
+            }
+        }
+
+        img {
+            width: 205px;
+        }
+    }
+}

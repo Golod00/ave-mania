@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import classes from "./DataTable.module.scss";
+import TextTitle from '@/ui/components/TextTitle';
 
 export default function DataTable({ title, dataJson }) {
   const { tabs, columns, dataByTab } = dataJson;

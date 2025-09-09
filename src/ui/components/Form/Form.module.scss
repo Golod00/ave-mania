@@ -1,39 +1,115 @@
-.form {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-    margin-bottom: 64px;
+.formWrapper {
 
-    fieldset {
-        width: 100%;
 
-        label {
-            display: none;
+    .step {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        padding: 36px 24px;
+        border-radius: 60px;
+        background: #fff;
+
+        .wrap {
+            position: relative;
         }
-        input {
-            background-color: transparent;
-            border: none;
-            outline: none;
-            border-bottom: 1px solid $color-white;
-            width: 100%;
-            padding-bottom: 16px;
-            color: $color-white;
-            @include p16;
 
-            &::placeholder {
-                opacity: 0.4;
+        .blockLable {
+            .wrap {
+                display: flex;
+                align-items: center;
+                column-gap: 32px;
+            }
+            
+            label {
+                display: flex;
+                align-items: center;
+                column-gap: 12px;
+
+                input[type="radio"] {
+                    appearance: none;
+                    -webkit-appearance: none;
+                    -moz-appearance: none;
+
+                    width: 18px;
+                    height: 18px;
+                    border: 2px solid #E2E2E2;
+                    border-radius: 50%;
+                    outline: none;
+                    cursor: pointer;
+                    position: relative;
+                    margin: 0;
+                    background: #E2E2E2;
+
+                    &:checked {
+                        border-color: #E2E2E2;
+
+                        &::before {
+                            content: "";
+                            position: absolute;
+                            top: 1px;
+                            left: 1px;
+                            width: 12px;
+                            height: 12px;
+                            background: $color-accent;
+                            border-radius: 50%;
+                        }
+                    }
+                }
             }
         }
-    }
-    button {
-        margin-top: 8px;
-    }
-}
 
-@media screen and (min-width: $toggleDesktop) {
-    .form {
-        padding-right: 105px;
-        margin-bottom: 0;
-        align-items: center;
+        .title {
+            margin-bottom: 8px;
+            font-family: Inter;
+            font-weight: 500;
+            font-size: 16px;
+            color: $color-light;
+        }
+
+        .input {
+            width: 100%;
+            padding: 12px 8px;
+            border: 1px solid #E2E2E2;
+            color: $color-light;
+            border-radius: 8px;
+            background: #F3F3F3;
+
+            &::placeholder {
+                color: #6F6F6F;
+            }
+
+            &:focus,
+            &:focus-visible {
+                outline: none;
+                box-shadow: none;
+            }
+        }
+
+        .error {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            margin-top: 4px;
+            font-size: 10px;
+            color: $color-accent;
+        }
+    }
+
+    .navButtons {
+
+        .btnNext {
+            width: 100%;
+            margin-top: 32px;
+            padding: 16px;
+            border-radius: 100px;
+            text-align: center;
+            font-family: Inter;
+            font-weight: 700;
+            font-size: 16px;
+            line-height: 100%;
+            color: $color-text;
+            background: #FBBA09;
+            cursor: pointer;
+        }
     }
 }

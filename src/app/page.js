@@ -7,6 +7,8 @@ import CategoriesWorkers from '@/ui/blocks/CategoriesWorkers';
 import ParticipantsBlock from '@/ui/blocks/ParticipantsBlock';
 import ResultsBlock from '@/ui/blocks/ResultsBlock';
 import Winners from '@/ui/blocks/Winners/Winners';
+import Prizes from '@/ui/blocks/Prizes/Prizes';
+import FormBlock from '@/ui/blocks/FormBlock/FormBlock';
 import Footer from '@/ui/blocks/Footer';
 
 import fs from 'fs';
@@ -28,6 +30,8 @@ export default async function Home() {
             <ParticipantsBlock />
             <ResultsBlock />
             <Winners />
+            <Prizes />
+            <FormBlock />
             <Footer />
         </>
     );
