@@ -10,7 +10,7 @@ const nextConfig = {
     includePaths: [path.join(__dirname, "src", "styles")],
     prependData: `
       @import "variables.scss";
-      @import "swiper.scss";
+      @import "fonts.scss";
     `,
   },
 };

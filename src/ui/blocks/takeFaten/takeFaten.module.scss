@@ -11,10 +11,10 @@
 
     .title {
         margin-bottom: 32px;
+        font-family: "onest";
         font-weight: 900;
         font-size: 36px;
         line-height: 100%;
-        letter-spacing: -3%;
         text-align: center;
     }
 
@@ -74,7 +74,7 @@
         }
 
         .wrapperbottom {
-            margin-top: 31px;
+            margin-top: 13px;
             position: absolute;
             left: 50%;
             transform: translateX(-50%);
@@ -109,16 +109,16 @@
             }
 
             .text {
-                max-width: 350px;
+                max-width: 250px;
                 margin: 0 auto;
-                font-family: overdoze sans;
+                font-family: "overdozesans";
                 font-weight: 700;
                 font-size: 35.53px;
-                line-height: 100%;
+                line-height: 80%;
                 text-align: center;
                 color: #000;
                 transform: rotate(21deg);
-                margin-top: 50px;
+                margin-top: 30px;
             }
         }
     }

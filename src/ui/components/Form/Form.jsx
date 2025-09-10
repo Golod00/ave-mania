@@ -20,7 +20,7 @@ export default function Form() {
     phone: "",
     email: "",
     kidsCount: "",
-    container: "", // yes / no
+    container: "",
     containers120: "",
     type120: "",
     containers11: "",
@@ -30,7 +30,6 @@ export default function Form() {
   const [errors, setErrors] = useState({});
   const [activeStep, setActiveStep] = useState(0);
 
-  // Всего 6 шагов (5 форм + финальный экран)
   const totalSteps = 6;
 
   const handleChange = (e) => {
@@ -86,14 +85,17 @@ export default function Form() {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("SEND DATA", formData);
-    // TODO: отправка на бекенд
+    swiperRef.current.slideNext();
   };
 
   return (
     <div className={classes.formWrapper}>
       <Swiper
         modules={[Pagination]}
-        pagination={{ clickable: true }}
+        pagination={{
+          clickable: true,
+          el: ".customPagination",
+        }}
         allowTouchMove={false}
         onSwiper={(swiper) => (swiperRef.current = swiper)}
         onSlideChange={(swiper) => setActiveStep(swiper.activeIndex)}
@@ -203,6 +205,7 @@ export default function Form() {
         {/* step 3 */}
         <SwiperSlide>
           <div className={classes.step}>
+            {/* Кількість дітей */}
             <div className={classes.wrap}>
               <p className={classes.title}>Орієнтовна кількість дітей</p>
               <input
@@ -215,40 +218,38 @@ export default function Form() {
               />
               {errors.kidsCount && <p className={classes.error}>{errors.kidsCount}</p>}
             </div>
-          </div>
-        </SwiperSlide>
 
-        {/* step 4 */}
-        <SwiperSlide>
-          <div className={classes.step}>
+            {/* Чи є контейнери? */}
             <p className={classes.title}>Чи є контейнери?</p>
-            <div className={classes.wrap}>
-              <label>
-                <input
-                  type="radio"
-                  name="container"
-                  value="yes"
-                  checked={formData.container === "yes"}
-                  onChange={handleChange}
-                />
-                Так
-              </label>
-              <label>
-                <input
-                  type="radio"
-                  name="container"
-                  value="no"
-                  checked={formData.container === "no"}
-                  onChange={handleChange}
-                />
-                Ні
-              </label>
-              {errors.container && <p className={classes.error}>{errors.container}</p>}
+            <div className={classes.blockLable}>
+              <div className={classes.wrap}>
+                <label>
+                  <input
+                    type="radio"
+                    name="container"
+                    value="yes"
+                    checked={formData.container === "yes"}
+                    onChange={handleChange}
+                  />
+                  Так
+                </label>
+                <label>
+                  <input
+                    type="radio"
+                    name="container"
+                    value="no"
+                    checked={formData.container === "no"}
+                    onChange={handleChange}
+                  />
+                  Ні
+                </label>
+                {errors.container && <p className={classes.error}>{errors.container}</p>}
+              </div>
             </div>
           </div>
         </SwiperSlide>
 
-        {/* step 5 */}
+        {/* step 4 */}
         <SwiperSlide>
           <div className={classes.step}>
             {formData.container === "yes" ? (
@@ -306,19 +307,19 @@ export default function Form() {
         </SwiperSlide>
       </Swiper>
 
-      {/* Навігація */}
-      <div className={classes.navButtons}>
+      <div className={classes.navWrapper}>
+        {activeStep < totalSteps - 1 && (
+          <button className={classes.btnNext} onClick={goNext}>
+            Далі
+          </button>
+        )}
+        {activeStep < totalSteps - 1 && (
+          <div className={`${classes.customPagination} customPagination`}></div>
+        )}
         {activeStep > 0 && activeStep < totalSteps - 1 && (
-          <button onClick={goPrev}>Назад</button>
-        )}
-        {activeStep < totalSteps - 2 && (
-          <button className={classes.btnNext} onClick={goNext}>Далі</button>
-        )}
-        {activeStep === totalSteps - 2 && (
-          <button className={classes.btnNext} onClick={goNext}>Далі</button>
-        )}
-        {activeStep === totalSteps - 1 && (
-          <button onClick={handleSubmit}>Надіслати</button>
+          <button className={classes.btnPrev} onClick={goPrev}>
+            Повернутись назад
+          </button>
         )}
       </div>
     </div>

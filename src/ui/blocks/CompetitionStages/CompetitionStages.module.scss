@@ -1,11 +1,10 @@
 .competitionStages {
-    margin-top: 287px;
+    margin-top: 268px;
     margin-bottom: 100px;
     overflow: visible;
     overflow-x: clip;
 
     @media screen and (min-width: $toggleDesktop) {
-        margin-top: 140px;
         margin-bottom: 140px;
     }
 
@@ -108,11 +107,10 @@
                 .title {
                     padding-top: 104px;
                     padding-bottom: 32px;
-                    font-family: Onest;
+                    font-family: "Onest";
                     font-weight: 900;
                     font-size: 36px;
                     line-height: 100%;
-                    letter-spacing: -3%;
                     text-align: center;
                     color: #fff;
                 }
@@ -126,7 +124,7 @@
                     margin: 0 auto;
 
                     @media screen and (min-width: $toggleDesktop) {
-                        max-width: 100%;
+                        max-width: 1054px;
                     }
 
                     .mainItem {
@@ -150,7 +148,6 @@
                             font-weight: 800;
                             font-size: 24px;
                             line-height: 100%;
-                            letter-spacing: -2%;
                             text-align: center;
                             color: #fff;
 
@@ -173,8 +170,8 @@
                         }
                         
                         .wrapIconMob {
-                            top: 40%;
-                            left: 90%;
+                            top: 32%;
+                            left: 83%;
                             transform: translateY(-50%);
                             z-index: 100;
                             width: 100%;
@@ -186,14 +183,14 @@
                         }
 
                         .wrapIconMob4 {
-                            top: 20%;
+                            top: 25%;
                             left: -37%;
                             transform: translateY(-50%);
                         }
 
                         .wrapIconMob5 {
                             top: -40%;
-                            left: 0;
+                            left: -10%;
                         }
                         
                         .wrapIconMob6 {
@@ -218,47 +215,51 @@
                         }
                         
                         .wrapIconDc {
-                            top: 0;
-                            right: -35%;
+                            top: -12px;
+                            right: -44%;
                         }
 
                         .wrapIconDc1 {
                             top: 20%;
-                            right: -35%;
+                            right: -45%;
                         }
 
                         .wrapIconDc2 {
-                            top: 20%;
-                            right: -5%;
+                            top: 31%;
+                            right: -11%;
                         }
 
                         .wrapIconDc3 {
                             top: 30%;
-                            left: 0%;
+                            left: -12%;
                         }
                         
                         .wrapIconDc4 {
                             top: 30%;
-                            left: -40%;
+                            left: -46%;
                         }
 
                         .wrapIconDc5 {
-                            top: 30%;
-                            left: -40%;
+                            top: 15%;
+                            left: -45%;
                         }
                     }
                 }
 
                 .mainBottomWrap {
+                    position: relative;
+                    z-index: 3;
                 
                     .wrapperIcons {
                         position: relative;
                         display: flex;
                         justify-content: center;
-                        margin-top: 77px;
+                        margin-top: 53px;
+                        margin-left: 65px;
 
                         @media screen and (min-width: $toggleDesktop) {
-                           margin-top: 0;
+                            margin-top: -20px;
+                            margin-left: -31px;
                         }
 
                         .textIcon {
@@ -269,7 +270,8 @@
                             @media screen and (min-width: $toggleDesktop) {
                                 width: 300px;
                                 height: 300px;
-                                margin-right: 450px;
+                                margin-top: -21px;
+                                margin-right: 342px;
                             }
                         }
 
@@ -288,7 +290,8 @@
                                 display: block;
                                 position: absolute;
                                 top: 10%;
-                                margin-left: 350px;
+                                margin-top: -30px;
+                                margin-left: 300px;
                             }
                         }
                     }
@@ -304,8 +307,8 @@
                     }
 
                     .wrapImg {
-                        z-index: 2;
                         bottom: -5%;
+                        z-index: 1;
                     }
 
                     .wrapImgTwo {

@@ -3,16 +3,15 @@
     position: relative;
     height: 100vh;
     max-height: 600px;
-    margin-top: 100px;
-    margin-bottom: 100px;
 
     @media screen and (min-width: $toggleDesktop) {
-        margin-top: 140px;
-        margin-bottom: 140px;
+        height: 100%;
+        min-height: 460px;
     }
 
     .title {
         margin-bottom: 32px;
+        font-family: "onest";
         font-weight: 900;
         font-size: 36px;
         line-height: 100%;
@@ -55,9 +54,9 @@
         align-items: center;
 
         @media screen and (min-width: $toggleDesktop) {
-            bottom: 44%;
+            bottom: 22%;
             right: initial;
-            left: 69%;
+            left: 71%;
             transform: translateX(-50%);
         }
 
@@ -67,8 +66,8 @@
             right: -70px;
             transform: translateY(-50%) rotate(23deg);
             z-index: 2;
-            min-width: 200px;
-            font-family: overdoze sans;
+            min-width: 163px;
+            font-family: "overdozesans";
             font-weight: 700;
             font-size: 27.91px;
             line-height: 80%;
@@ -76,7 +75,7 @@
             color: $color-light;
 
             @media screen and (min-width: $toggleDesktop) {
-                right: -57px;
+                right: -72px;
                 transform: translateY(-50%) rotate(9deg);
             }
         }

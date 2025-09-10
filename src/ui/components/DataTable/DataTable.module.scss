@@ -1,15 +1,18 @@
 .wrapper {
-  margin-top: 87px;
+  margin-top: 100px;
   overflow: hidden;
+
+  @media screen and (min-width: $toggleDesktop) {
+    margin-top: 140px;
+  }
 }
 
 .title {
     margin-bottom: 32px;
-    font-family: Onest;
+    font-family: "Onest";
     font-weight: 900;
     font-size: 36px;
     line-height: 100%;
-    letter-spacing: -3%;
     text-align: center;
     color: $color-primary;
 
@@ -91,16 +94,18 @@
 
   th {
     min-width: 170px;
-    background-color: #FFECED;
+    text-align: center;
     text-wrap-mode: nowrap;
     font-family: Inter;
     font-weight: 700;
     font-size: 16px;
     color: $color-accent;
+    background-color: #FFECED;
   }
 
   td {
     padding: 24px 20px;
+    text-align: center;
 
     @media screen and (min-width: $toggleDesktop) {
         max-height: 489px;

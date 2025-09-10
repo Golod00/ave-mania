@@ -1,16 +1,41 @@
 .formBlock {
     position: relative;
-    margin-top: 100px;
-    margin-bottom: 100px;
+    min-height: 920px;
+    margin-top: -34px;
+    padding-top: 100px;
 
     @media screen and (min-width: $toggleDesktop) {
-        margin-top: 140px;
         margin-bottom: 140px;
+    }
+
+    .bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+
+        img {
+            max-height: 906px;
+            object-fit: fill;
+
+            @media screen and (min-width: $toggleDesktop) {
+               
+            }
+        }
+    }
+
+    .bgIcon {
+        position: absolute;
+        bottom: -5px;
+        left: 50%;
+        transform: translateX(-50%);
     }
 
     .title {
         margin-bottom: 25px;
-        font-family: Onest;
+        font-family: "Onest";
         font-weight: 900;
         font-size: 36px;
         line-height: 100%;
@@ -18,9 +43,19 @@
         color: #fff;
 
         @media screen and (min-width: $toggleDesktop) {
-            margin-bottom: 32px;
+            display: none;
         }
     }
-    
+
+    .titleDec {
+        display: none;
+
+        @media screen and (min-width: $toggleDesktop) {
+            display: block;
+            max-width: 558px;
+            height: 79px;
+            margin: 0 auto 32px;
+        }
+    }
 
 }

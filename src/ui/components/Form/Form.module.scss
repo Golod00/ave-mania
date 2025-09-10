@@ -1,13 +1,33 @@
 .formWrapper {
+        max-height: 605px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 36px 24px 48px 24px;
+        border-radius: 60px;
+        background: #fff;
 
+        @media screen and (min-width: $toggleDesktop) {
+            max-width: 715px;
+            max-height: max-content;
+            margin: 0 auto;
+            gap: 24px;
+            padding: 46px 158px 146px 158px;
+        }
+
+        .swiper {
+            width: 100%;
+        }
 
     .step {
         display: flex;
         flex-direction: column;
         gap: 24px;
-        padding: 36px 24px;
-        border-radius: 60px;
-        background: #fff;
+
+        @media screen and (min-width: $toggleDesktop) {
+            max-width: 400px;
+            margin: 0 auto;
+        }
 
         .wrap {
             position: relative;
@@ -95,11 +115,18 @@
         }
     }
 
-    .navButtons {
+    .navWrapper {
+
+        @media screen and (min-width: $toggleDesktop) {
+            display: grid;
+            grid-template-columns: auto auto;
+            gap: 24px;
+        }
 
         .btnNext {
             width: 100%;
             margin-top: 32px;
+            margin-bottom: 24px;
             padding: 16px;
             border-radius: 100px;
             text-align: center;
@@ -110,6 +137,49 @@
             color: $color-text;
             background: #FBBA09;
             cursor: pointer;
+
+            @media screen and (min-width: $toggleDesktop) {
+                grid-area: 1 / 1 / 2 / 3;
+                width: max-content;
+                margin: 0 auto;
+            }
+        }
+
+        .customPagination {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            column-gap: 8px;
+            margin-bottom: 16px;
+
+            @media screen and (min-width: $toggleDesktop) {
+                grid-area: 2 / 1 / 3 / 3;
+                margin: 0;
+            }
+
+            span {
+                margin: 0;
+                pointer-events: none;
+            }
+        }
+
+        .btnPrev {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 100%;
+            text-decoration: underline;
+            color: $color-accent;
+            background: transparent;
+            cursor: pointer;
+
+            @media screen and (min-width: $toggleDesktop) {
+                grid-area: 2 / 1 / 3 / 3;
+                justify-content: start;
+                margin-left: -26%;
+            }
         }
     }
 }

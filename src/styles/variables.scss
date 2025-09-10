@@ -30,6 +30,7 @@ $font-main: 'Inter', sans-serif;
 }
 
 // Containers
+$container-widthTable: 720px;
 $container-width: 1240px;
 $transition-speed: 0.3s;
 $paddingBlock: 80px;
@@ -47,8 +48,15 @@ $toggleDesktop: 1240px;
 }
 
 @mixin container {
-    max-width: $container-width;
     margin: 0 auto;
+    
+    @media screen and (min-width: $toggleTablet) {
+        max-width: $container-widthTable;
+    }
+
+    @media screen and (min-width: $toggleDesktop) {
+        max-width: $container-width;
+    }
 }
 
 @mixin customScrollerPad {

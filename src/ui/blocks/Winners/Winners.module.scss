@@ -1,12 +1,15 @@
 .wrapper {
     position: relative;
-    margin-top: 100px;
     padding-top: 200px;
     padding-bottom: 200px;
 
+    @media screen and (min-width: $toggleDesktop) {
+        padding-top: 240px;
+    }
+
     .title {
         margin-bottom: 32px;
-        font-family: Onest;
+        font-family: "Onest";
         font-weight: 900;
         font-size: 36px;
         line-height: 100%;
@@ -31,9 +34,10 @@
                 align-items: center;
                 column-gap: 16px;
                 margin-bottom: 18px;
-                font-family: overdoze sans;
+                font-family: "overdozesans";
                 font-weight: 700;
                 font-size: 35.53px;
+                line-height: 80%;
                 color: $color-accent;
             }
 
