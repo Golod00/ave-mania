@@ -160,6 +160,7 @@
             span {
                 margin: 0;
                 pointer-events: none;
+                cursor: none;
             }
         }
 
@@ -174,11 +175,17 @@
             color: $color-accent;
             background: transparent;
             cursor: pointer;
+            transition: all .2s ease-in;
 
             @media screen and (min-width: $toggleDesktop) {
+                width: max-content;
                 grid-area: 2 / 1 / 3 / 3;
                 justify-content: start;
                 margin-left: -26%;
+            }
+
+            &:hover {
+                text-decoration: none;
             }
         }
     }

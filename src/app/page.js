@@ -9,6 +9,7 @@ import ResultsBlock from '@/ui/blocks/ResultsBlock';
 import Winners from '@/ui/blocks/Winners/Winners';
 import Prizes from '@/ui/blocks/Prizes/Prizes';
 import FormBlock from '@/ui/blocks/FormBlock/FormBlock';
+import SortingRules from '@/ui/blocks/SortingRules/SortingRules';
 import Footer from '@/ui/blocks/Footer';
 
 import fs from 'fs';
@@ -32,6 +33,7 @@ export default async function Home() {
             <Winners />
             <Prizes />
             <FormBlock />
+            <SortingRules />
             <Footer />
         </>
     );

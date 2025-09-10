@@ -31,6 +31,17 @@
         bottom: -5px;
         left: 50%;
         transform: translateX(-50%);
+
+        @media screen and (min-width: $toggleDesktop) {
+            right: 17px;
+            left: initial;
+            transform: initial;
+
+            svg {
+                width: 284px;
+                height: 421px;
+            }
+        }
     }
 
     .title {
