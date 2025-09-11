@@ -1,0 +1,181 @@
+
+.markingPlastic {
+    position: relative;
+    margin-top: 100px;
+    overflow: hidden;
+
+    @media screen and (min-width: $toggleDesktop) {
+        margin-top: 140px;
+    }
+
+    .bgWrap {
+        position: absolute;
+        top: 176px;
+        left: 0;
+        z-index: -1;
+
+        @media screen and (min-width: 768px) {
+            top: 70px;
+        }
+
+        @media screen and (min-width: $toggleDesktop) {
+            top: 170px;
+
+            img {
+                max-height: 596px;
+                object-fit: contain;
+            }
+        }
+
+        .iconWrap {
+            position: absolute;
+            bottom: 24px;
+            right: 4px;
+
+            @media screen and (min-width: $toggleDesktop) {
+                bottom: -34px;
+                right: 36%;
+
+                svg {
+                    width: 57px;
+                    height: 56px;
+                }
+            }
+        }
+
+        .iconWrapTwo {
+            display: none;
+
+            @media screen and (min-width: $toggleDesktop) {
+                display: block;
+                position: absolute;
+                top: 32%;
+                right: 20px;
+            }
+        }
+
+        .iconWrapThree {
+            display: none;
+
+            @media screen and (min-width: $toggleDesktop) {
+                display: block;
+                position: absolute;
+                top: 41%;
+                left: 22%;
+            } 
+        }
+    }
+
+    .title {
+        margin-bottom: 32px;
+        font-family: "Onest";
+        font-weight: 900;
+        font-size: 36px;
+        text-align: center;
+    }
+
+    .wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 176px;
+
+        @media screen and (min-width: $toggleDesktop) {
+            flex-direction: row;
+            gap: 83px;
+        }
+
+        .wrapperMainInfo {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+
+            @media screen and (min-width: $toggleDesktop) {
+                min-width: 400px;
+            }
+
+            .titleInfo {
+                font-weight: 800;
+                font-size: 24px;
+                line-height: 100%;
+                color: $color-primary;
+            }
+
+            .description {
+                display: flex;
+                flex-direction: column;
+                gap: 16px;
+                font-weight: 500;
+                font-size: 16px;
+                line-height: 140%;
+                letter-spacing: -0.5px;
+                color: $color-light;
+            }
+        }
+
+        .wrapperContent {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+
+            @media screen and (min-width: 768px) {
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            @media screen and (min-width: $toggleDesktop) {
+                gap: 32px 16px;
+                justify-content: start;
+            }
+
+            .item {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+
+                @media screen and (min-width: 768px) {
+                    width: 48%;
+                }
+
+                @media screen and (min-width: $toggleDesktop) {
+                    align-items: start;
+                }
+
+                .imageWrap {
+                    margin-bottom: 16px;
+                }
+
+                .content {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    gap: 8px;
+
+                    @media screen and (min-width: $toggleDesktop) {
+                        align-items: start;
+                        gap: 16px;
+                    }
+
+                    .titleContent {
+                        font-weight: 800;
+                        font-size: 24px;
+                        line-height: 100%;
+                        color: $color-primary;
+                    }
+
+                    .text {
+                        font-weight: 500;
+                        font-size: 16px;
+                        line-height: 140%;
+                        text-align: center;
+                        color: $color-light;
+
+                        @media screen and (min-width: $toggleDesktop) {
+                            text-align: left;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

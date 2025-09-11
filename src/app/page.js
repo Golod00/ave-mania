@@ -10,6 +10,9 @@ import Winners from '@/ui/blocks/Winners/Winners';
 import Prizes from '@/ui/blocks/Prizes/Prizes';
 import FormBlock from '@/ui/blocks/FormBlock/FormBlock';
 import SortingRules from '@/ui/blocks/SortingRules/SortingRules';
+import MarkingPlastic from '@/ui/blocks/MarkingPlastic/MarkingPlastic';
+import NotAccept from '@/ui/blocks/NotAccept/NotAccept';
+import WhatsNext from '@/ui/blocks/WhatsNext/WhatsNext';
 import Footer from '@/ui/blocks/Footer';
 
 import fs from 'fs';
@@ -34,6 +37,9 @@ export default async function Home() {
             <Prizes />
             <FormBlock />
             <SortingRules />
+            <MarkingPlastic />
+            <NotAccept />
+            <WhatsNext />
             <Footer />
         </>
     );

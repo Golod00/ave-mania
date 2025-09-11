@@ -51,28 +51,16 @@ export default function SortingRules() {
                         </div>
                         <div className={classes.item}>
                             <div className={classes.bg}>
-                                <div className={`${classes.imageWrap} ${classes.wrapImgThree}`}>
-                                    <Image
-                                        className={classes.image1}
-                                        src="/images/SortingRules/image1.1.webp"
-                                        width={152}
-                                        height={218}
-                                        alt="Image ave mania"
-                                    />
-                                    <Image
-                                        className={classes.image2}
-                                        src="/images/SortingRules/image1.2.webp"
-                                        width={182}
-                                        height={86}
-                                        alt="Image ave mania"
-                                    />
-                                    <Image
-                                        className={classes.image3}
-                                        src="/images/SortingRules/image1.3.webp"
-                                        width={183}
-                                        height={153}
-                                        alt="Image ave mania"
-                                    />
+                                <div className={`${classes.imageWrap} ${classes.imageWrapTwo}`}>
+                                    <TextTitle>
+                                        <Image
+                                            className={classes.image1}
+                                            src="/images/SortingRules/image2.webp"
+                                            width={373}
+                                            height={257}
+                                            alt="Image ave mania"
+                                        />
+                                    </TextTitle>
                                 </div>
                                 <div className={classes.imageWrapIcon}>
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 164" fill="none">
@@ -122,7 +110,60 @@ export default function SortingRules() {
                         </div>
                     </div>
                     <div className={classes.wrapperContent}>
-                
+                        <TextTitle className={classes.item}>
+                            <div className={classes.imageWrap}>
+                                <Image
+                                    src="/images/SortingRules/photo1.webp"
+                                    width={295}
+                                    height={201}
+                                    alt="Image ave mania"
+                                />
+                            </div>
+                            <div className={classes.content}>
+                                <p className={classes.titleContent}>
+                                    1. Очисти
+                                </p>
+                                <p className={classes.text}>
+                                    Відходи повинні бути без залишків їжі, тому приберіть все зайве перед тим як розмістити відходи у відповідний контейнер.
+                                </p>
+                            </div>
+                        </TextTitle>
+                        <TextTitle className={classes.item}>
+                            <div className={classes.imageWrap}>
+                                <Image
+                                    src="/images/SortingRules/photo2.webp"
+                                    width={295}
+                                    height={201}
+                                    alt="Image ave mania"
+                                />
+                            </div>
+                            <div className={classes.content}>
+                                <p className={classes.titleContent}>
+                                    2. Стисни
+                                </p>
+                                <p className={classes.text}>
+                                    Складайте відходи компактніше. Картонна тара та пластикова пляшка повинні бути стиснуті, щоб займати якомога менше простору в контейнері.                                
+                                </p>
+                            </div>
+                        </TextTitle>
+                        <TextTitle className={classes.item}>
+                            <div className={classes.imageWrap}>
+                                <Image
+                                    src="/images/SortingRules/photo3.webp"
+                                    width={295}
+                                    height={201}
+                                    alt="Image ave mania"
+                                />
+                            </div>
+                            <div className={classes.content}>
+                                <p className={classes.titleContent}>
+                                    3. Посортуй
+                                </p>
+                                <p className={classes.text}>
+                                    Відходи розмісти у відповідний контейнер.                                
+                                </p>
+                            </div>
+                        </TextTitle>
                     </div>
                 </div>
             </div>

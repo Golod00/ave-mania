@@ -1,0 +1,74 @@
+
+.notAccept {
+    margin-top: 100px;
+    overflow: hidden;
+
+    @media screen and (min-width: $toggleDesktop) {
+        margin-top: 80px;
+    }
+
+    .title {
+        margin-bottom: 20px;
+        font-weight: 800;
+        font-size: 24px;
+        line-height: 100%;
+        text-align: center;
+
+        @media screen and (min-width: $toggleDesktop) {
+            margin-bottom: 24px;
+        }
+    }
+
+    .wrapper {
+
+        .wrapperContent {
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+            padding: 0 24px;
+
+            @media screen and (min-width: 768px) {
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            @media screen and (min-width: $toggleDesktop) {
+                gap: 20px;
+                padding: 0;
+            }
+
+            .item {
+                display: flex;
+                flex-direction: column;
+
+                @media screen and (min-width: 768px) {
+                    width: 47%;
+                }
+
+                @media screen and (min-width: $toggleDesktop) {
+                    width: 100%;
+                    max-width: 295px;
+                }
+
+                .imageWrap {
+                    display: flex;
+                    width: 100%;
+                    margin-bottom: 16px;
+                }
+
+                .content {
+                    display: flex;
+                    gap: 8px;
+
+                    p {
+                        font-weight: 500;
+                        font-size: 16px;
+                        line-height: 140%;
+                        color: $color-light;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -7,7 +7,7 @@ import classes from './TextTitle.module.scss';
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default function TextTitle({ children, type = 'h2', className }) {
+export default function TextTitle({ children, type = 'div', className }) {
     const ref = useRef(null);
 
     useEffect(() => {

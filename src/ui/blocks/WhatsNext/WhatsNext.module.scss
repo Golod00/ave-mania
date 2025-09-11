@@ -1,0 +1,161 @@
+
+.whatsNext {
+    margin-top: 100px;
+    overflow: hidden;
+
+    @media screen and (min-width: $toggleDesktop) {
+        margin-top: 123px;
+    }
+
+    .title {
+        margin-bottom: 32px;
+        font-family: "Onest";
+        font-weight: 900;
+        font-size: 36px;
+        text-align: center;
+    }
+
+    .description {
+        font-weight: 800;
+        font-size: 16px;
+        line-height: 100%;
+        text-align: center;
+
+        @media screen and (min-width: $toggleDesktop) {
+            font-size: 24px;
+        }
+    }
+
+    .wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
+        margin-top: 32px;
+        margin-bottom: 32px;
+
+        @media screen and (min-width: $toggleDesktop) {
+            flex-direction: row;
+            gap: 16px;
+        }
+
+        .item {
+            position: relative;
+            width: 100%;
+            min-height: 557px;
+            border-radius: 44px;
+
+            .wrapMapIcon {
+                position: absolute;
+                top: 54%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                z-index: 1;
+
+                .textMap {
+                    position: absolute;
+                    top: 43%;
+                    left: 71%;
+                    transform: translate(-50%, -50%) rotate(13deg);
+                    width: 145px;
+                    font-family: "overdozesans";
+                    font-weight: 700;
+                    font-size: 24.99px;
+                    line-height: 80%;
+                    text-align: center;
+                    color: $color-light;
+                }
+
+                .textMapDop {
+                    transform: translate(-50%, -50%) rotate(343deg);
+                    left: 31% !important;
+                }
+
+                .colorWhite {
+                    width: 160px;
+                    top: 35%;
+                    left: 53%;
+                    color: #fff;
+                }
+            }
+
+            .wrapCar {
+                position: relative;
+                z-index: 1;
+
+                img {
+                    width: max-content;
+                    min-width: 254px;
+                }
+
+                .iconTop {
+                    position: absolute;
+                    top: 115%;
+                    left: 34%;
+                    transform: translateY(-50%);
+                    z-index: -2;
+                    min-width: 95px;
+                    height: 100%;
+
+                    path {
+                        vector-effect: non-scaling-stroke;
+                    }   
+                }
+            }
+
+            .wrapProd {
+                position: absolute;
+                bottom: 0;  
+                left: 50%;
+                transform: translateX(-50%) !important;
+
+                img {
+                    width: max-content;
+                    min-width: 243px;
+                }
+
+                .iconBottom {
+                    height: 100%;
+                    position: absolute;
+                    top: 15%;
+                    left: 28%;
+                    transform: translateY(-50%);
+                    z-index: -2;
+
+                    path {
+                        vector-effect: non-scaling-stroke;
+                    }  
+                }
+            }
+
+            &.itemDop {
+
+                .wrapProd {
+
+                    .iconBottom {
+                        top: 36%;
+                        left: 33%;
+                    }
+                }
+            }
+        }
+
+        .bgYellow {
+            background: $bg-yellow; 
+        }
+        .bgBlue {
+            background: $bg-blue; 
+        }
+        .bgGreen {
+            background: $bg-green; 
+        }
+    }
+
+    .infoText {
+        font-weight: 800;
+        font-size: 24px;
+        line-height: 120%;
+        letter-spacing: -0.7px;
+        text-align: center;
+        color: $color-primary;
+    }
+}
