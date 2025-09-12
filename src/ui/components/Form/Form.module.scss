@@ -1,23 +1,24 @@
 .formWrapper {
-        max-height: 605px;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        padding: 36px 24px 48px 24px;
-        border-radius: 60px;
-        background: #fff;
+    position: relative;
+    max-height: 605px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 36px 24px 48px 24px;
+    border-radius: 60px;
+    background: #fff;
 
-        @media screen and (min-width: $toggleDesktop) {
-            max-width: 715px;
-            max-height: max-content;
-            margin: 0 auto;
-            gap: 24px;
-            padding: 46px 158px 146px 158px;
-        }
+    @media screen and (min-width: $toggleDesktop) {
+        max-width: 715px;
+        max-height: max-content;
+        margin: 0 auto;
+        gap: 24px;
+        padding: 46px 158px 100px 158px;
+    }
 
-        .swiper {
-            width: 100%;
-        }
+    .swiper {
+        width: 100%;
+    }
 
     .step {
         display: flex;
@@ -90,9 +91,16 @@
             width: 100%;
             padding: 12px 8px;
             border: 1px solid #E2E2E2;
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 140%;
             color: $color-light;
             border-radius: 8px;
             background: #F3F3F3;
+
+            @media screen and (min-width: $toggleDesktop) {
+                padding: 12px 24px;
+            }
 
             &::placeholder {
                 color: #6F6F6F;
@@ -102,6 +110,67 @@
             &:focus-visible {
                 outline: none;
                 box-shadow: none;
+            }
+        }
+
+        .wrapCustomSelect {
+            position: relative;
+
+            .error {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                color: $color-accent;
+            }
+        }
+
+        .selectWrapper {
+            width: 100%;
+            padding: 12px 8px;
+            border: 1px solid #E2E2E2;
+            border-radius: 8px;
+            background: #F3F3F3;
+
+            @media screen and (min-width: $toggleDesktop) {
+                padding: 12px 24px;
+            }
+
+            &:focus,
+            &:focus-visible {
+                outline: none;
+                box-shadow: none;
+            }
+
+            .select {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                font-weight: 400;
+                font-size: 16px;
+                line-height: 140%;
+                color: $color-light;
+
+                span {
+                    display: flex;
+                }
+            }
+
+            ul {
+                margin-top: 8px;
+                padding-top: 12px;
+                border-top: 1px solid #D9D9D9;
+
+                li {
+                    padding: 12px 0;
+                    font-weight: 400;
+                    font-size: 16px;
+                    line-height: 140%;
+                    color: $color-light;
+
+                    &:hover {
+                        color: $color-accent;
+                    }
+                }
             }
         }
 
@@ -190,3 +259,85 @@
         }
     }
 }
+
+
+    .successWrapper {
+        position: relative;
+        min-height: 605px;
+        padding: 0;
+        background: #FBBA09;
+        overflow: hidden;
+
+        .success {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+
+            .title {
+                margin-bottom: 42px;
+                font-family: "Onest";
+                font-weight: 900;
+                font-size: 36px;
+                line-height: 100%;
+                text-align: center;
+                color: #1C1C1C;
+            }
+
+            p {
+                font-weight: 800;
+                font-size: 24px;
+                line-height: 120%;
+                text-align: center;
+                color: #1C1C1C;
+            }
+        }
+
+        .wrapBg {
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            z-index: 0;
+        }
+
+        .wrapIcons {
+            
+            .item {
+                position: absolute;
+                z-index: 1;
+            }
+
+            .itemOne {
+
+
+                @media screen and (min-width: $toggleDesktop) {
+                    
+                    svg {
+                        
+                    }
+                }
+            }
+
+            .itemTwo {
+
+
+                @media screen and (min-width: $toggleDesktop) {
+                    
+                    svg {
+                        
+                    }
+                }
+            }
+
+            .itemThree {
+
+                @media screen and (min-width: $toggleDesktop) {
+                    
+                    svg {
+
+                    }
+                }
+            }
+        }
+    }

@@ -216,8 +216,13 @@
                 
                 @media screen and (min-width: $toggleDesktop) {
                     max-width: 100%;
+                }
 
-                    .bgIconsItem3 {
+                .bgIconsItem3 {
+                    display: none;
+
+                    @media screen and (min-width: $toggleDesktop) {
+                        display: block;
                         position: absolute;
                         bottom: 29%;
                         left: -22%;

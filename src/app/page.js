@@ -13,6 +13,7 @@ import SortingRules from '@/ui/blocks/SortingRules/SortingRules';
 import MarkingPlastic from '@/ui/blocks/MarkingPlastic/MarkingPlastic';
 import NotAccept from '@/ui/blocks/NotAccept/NotAccept';
 import WhatsNext from '@/ui/blocks/WhatsNext/WhatsNext';
+import VideoBlock from '@/ui/blocks/VideoBlock/VideoBlock';
 import Footer from '@/ui/blocks/Footer';
 
 import fs from 'fs';
@@ -40,6 +41,7 @@ export default async function Home() {
             <MarkingPlastic />
             <NotAccept />
             <WhatsNext />
+            <VideoBlock />
             <Footer />
         </>
     );

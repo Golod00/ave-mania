@@ -1,0 +1,31 @@
+.sliderWrapper {
+    width: 100%;
+
+    @media screen and (min-width: $toggleDesktop) {
+        max-width: 400px;
+    }
+
+    .sliderControls {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 32px;
+        margin-bottom: 24px;
+        padding: 10px 16px;
+        border-radius: 26px;
+        background: #F3F3F3;
+
+        .swiperButtonPrev,
+        .swiperButtonNext {
+            cursor: pointer;
+        }
+
+        .swiperPagination {
+            width: auto;
+            font-family: Inter;
+            font-weight: 500;
+            font-size: 16px;
+            color: $color-accent;
+        }
+    }
+}

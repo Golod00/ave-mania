@@ -60,7 +60,7 @@ export default function Winners() {
   ));
 
   return (
-    <section className={classes.wrapper}>
+    <section id="winners" className={classes.wrapper}>
         <div className={classes.bg}>
             <picture>
                 <source
@@ -111,14 +111,12 @@ export default function Winners() {
                           srcSet="/images/Winners/image.webp"
                           media="(min-width: 1240px)" 
                       />
-                      <TextTitle>
-                          <Image
-                              src="/images/Winners/mob/image.webp"
-                              width={610}
-                              height={428}
-                              alt="Image ave mania"
-                          />
-                      </TextTitle>
+                      <Image
+                          src="/images/Winners/mob/image.webp"
+                          width={610}
+                          height={428}
+                          alt="Image ave mania"
+                      />
                     </picture>
 
                   <div className={classes.iconWrap}>

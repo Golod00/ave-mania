@@ -18,10 +18,12 @@
     .description {
         font-weight: 800;
         font-size: 16px;
-        line-height: 100%;
+        line-height: 120%;
         text-align: center;
 
         @media screen and (min-width: $toggleDesktop) {
+            max-width: 730px;
+            margin: 32px auto;
             font-size: 24px;
         }
     }
@@ -34,8 +36,9 @@
         margin-bottom: 32px;
 
         @media screen and (min-width: $toggleDesktop) {
-            flex-direction: row;
             gap: 16px;
+            max-width: 1030px;
+            margin: 32px auto 32px;
         }
 
         .item {
@@ -44,12 +47,37 @@
             min-height: 557px;
             border-radius: 44px;
 
+            @media screen and (min-width: 570px) {
+                min-height: 150px;
+            }
+
+            @media screen and (min-width: $toggleDesktop) {
+                min-height: 221px;
+                border-radius: 24px;
+            }
+
             .wrapMapIcon {
                 position: absolute;
                 top: 54%;
                 left: 50%;
                 transform: translate(-50%, -50%);
                 z-index: 1;
+
+                @media screen and (min-width: $toggleDesktop) {
+
+                    .iconMobMap {
+                        display: none;
+                    }
+                }
+
+                .iconDecMap {
+                    display: none;
+
+                    @media screen and (min-width: $toggleDesktop) {
+                        display: block;
+                        left: 48%;
+                    }
+                }
 
                 .textMap {
                     position: absolute;
@@ -63,6 +91,12 @@
                     line-height: 80%;
                     text-align: center;
                     color: $color-light;
+
+                    @media screen and (min-width: $toggleDesktop) {
+                        top: 21%;
+                        left: 60%;
+                        font-size: 27px;
+                    }
                 }
 
                 .textMapDop {
@@ -75,6 +109,12 @@
                     top: 35%;
                     left: 53%;
                     color: #fff;
+
+                    @media screen and (min-width: $toggleDesktop) {
+                        width: 170px;
+                        top: 30%;
+                        left: 68%;
+                    }
                 }
             }
 
@@ -82,23 +122,62 @@
                 position: relative;
                 z-index: 1;
 
+                @media screen and (min-width: 570px) {
+                   position: absolute;
+                   bottom: 0;
+                   left: 0;
+                }
+
                 img {
                     width: max-content;
                     min-width: 254px;
+
+                    @media screen and (min-width: 570px) {
+                        min-width: 150px;
+                        max-width: 200px;
+                    }
+
+                    @media screen and (min-width: $toggleDesktop) {
+                        min-width: 262px;
+                    }
                 }
 
                 .iconTop {
                     position: absolute;
                     top: 115%;
-                    left: 34%;
+                    left: 36%;
                     transform: translateY(-50%);
                     z-index: -2;
                     min-width: 95px;
                     height: 100%;
 
+                    @media screen and (min-width: 570px) {
+                        top: 67%;
+                        right: -51%;
+                        left: initial;
+                        transform: translateY(-50%) rotate(39deg);
+                    }
+
                     path {
                         vector-effect: non-scaling-stroke;
                     }   
+
+                     @media screen and (min-width: $toggleDesktop) {
+                        display: none;
+                    }
+                }
+
+                .iconTopDec {
+                    display: none;
+                    
+                    @media screen and (min-width: $toggleDesktop) {
+                        display: block;
+                        position: absolute;
+                        top: 50%;
+                        right: -81%;
+                        transform: translateY(-50%);
+                        z-index: -1;
+                    }
                 }
             }
 
@@ -108,9 +187,26 @@
                 left: 50%;
                 transform: translateX(-50%) !important;
 
+                @media screen and (min-width: 570px) {
+                    top: 50%;
+                    right: 0;
+                    bottom: initial;
+                    left: initial;
+                    transform: translateY(-50%) !important;
+                }   
+
                 img {
                     width: max-content;
                     min-width: 243px;
+
+                    @media screen and (min-width: 570px) {
+                        min-width: 150px;
+                        max-width: 170px;
+                    }
+
+                    @media screen and (min-width: $toggleDesktop) {
+                        min-width: 330px;
+                    }
                 }
 
                 .iconBottom {
@@ -124,16 +220,83 @@
                     path {
                         vector-effect: non-scaling-stroke;
                     }  
+
+                    @media screen and (min-width: 570px) {
+                        top: 50%;
+                        left: -36%;
+                        transform: translateY(-50%) rotate(264deg);
+                    }
+
+                    @media screen and (min-width: $toggleDesktop) {
+                        display: none;
+                    }
+                }
+
+                .iconBottomDec {
+                    display: none;
+                    
+                    @media screen and (min-width: $toggleDesktop) {
+                        display: block;
+                        position: absolute;
+                        top: 50%;
+                        left: -50%;
+                        transform: translateY(-50%);
+                        z-index: -1;
+                    }
+                }
+            }
+
+            &.itemBlue {
+
+                @media screen and (min-width: $toggleDesktop) {
+                    
+                    .wrapCar {
+                        .iconTopDec  {
+                            right: -68%;
+                        }
+                    }
+
+                    .wrapMapIcon {
+                        top: 50%;
+                        left: 51%;
+                    }
+
+                    .wrapProd  {
+                        bottom: -36%;
+
+                        img {
+                            min-width: 373px;
+                        }
+                    }
                 }
             }
 
             &.itemDop {
-
                 .wrapProd {
+                    
+                    @media screen and (min-width: 570px) {
+                        bottom: -92px;
+                    }
 
                     .iconBottom {
                         top: 36%;
                         left: 33%;
+
+                        @media screen and (min-width: 570px) {
+                            top: 50%;
+                            left: -46%;
+                        }
+                    }
+                }
+
+                .bgIcon {
+                    display: none;
+
+                    @media screen and (min-width: $toggleDesktop) {
+                        display: block;
+                        position: absolute;
+                        top: -16px;
+                        left: -12%;
                     }
                 }
             }
@@ -141,6 +304,18 @@
 
         .bgYellow {
             background: $bg-yellow; 
+
+            .bgIcon {
+                display: none;
+
+                @media screen and (min-width: $toggleDesktop) {
+                    display: block;
+                    position: absolute;
+                    top: 50%;
+                    right: -13%;
+                    transform: translateY(-50%) !important;
+                }
+            }
         }
         .bgBlue {
             background: $bg-blue; 
@@ -157,5 +332,10 @@
         letter-spacing: -0.7px;
         text-align: center;
         color: $color-primary;
+
+        @media screen and (min-width: $toggleDesktop) {
+            max-width: 715px;
+            margin: 0 auto;
+        }
     }
 }

@@ -3,6 +3,7 @@
     position: relative;
     margin-top: 100px;
     margin-bottom: 100px;
+    overflow: visible;
 
     @media screen and (min-width: $toggleDesktop) {
         margin-top: 140px;

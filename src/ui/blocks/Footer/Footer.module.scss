@@ -1,0 +1,239 @@
+.footer {
+    position: relative;
+    margin-top: 168px;
+    background: #F3F3F3;
+
+    @media screen and (min-width: $toggleDesktop) {
+        margin-top: 156px;
+        padding: 32px 0;
+    }
+
+    .wrapIcon {
+        position: absolute;
+        top: -10%;
+        right: 22px;
+
+        @media screen and (min-width: $toggleDesktop) {
+            display: none;
+        }
+    }
+
+    .main {
+        padding: 79px 8px 0;
+
+        @media screen and (min-width: $toggleDesktop) {
+            display: grid;
+            grid-template-columns: 327px 1fr;
+            gap: 125px;
+            padding: 0;
+        }
+       
+        .wrapInfo {
+
+            @media screen and (min-width: $toggleDesktop) {
+                position: relative;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+            }
+
+            .wrapIconDec {
+                display: none;
+
+                @media screen and (min-width: $toggleDesktop) {
+                    display: block;
+                    position: absolute;
+                    top: -130px;
+                    right: -106px;
+                }
+            }
+
+            a {
+                display: block;
+                max-width: 238px;
+                margin: 0 auto;
+
+                @media screen and (min-width: $toggleDesktop) {
+                    max-width: 222px;
+                    margin: 0;
+                }
+            }
+            
+            .confidentiality {
+                display: none;
+
+                @media screen and (min-width: $toggleDesktop) {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 6px;
+                    font-weight: 500;
+                    font-size: 16px;
+                    line-height: 100%;
+                    color: #6F6F6F;
+                }
+            }
+        }
+
+        .wrapContent {
+            
+            .contact {
+                margin-top: 50px;
+                text-align: center;
+                font-weight: 800;
+                font-size: 24px;
+                line-height: 100%;
+                color: $color-primary;
+
+                @media screen and (min-width: $toggleDesktop) {
+                    margin-top: 0;
+                    margin-bottom: 6px;
+                    text-align: left;
+                }
+            }
+
+            .wrapBlockLink {
+                display: none;
+
+                @media screen and (min-width: $toggleDesktop) {
+                    display: flex;
+                    align-items: center;
+                    column-gap: 60px;
+
+                    .link {
+                        font-weight: 800;
+                        font-size: 24px;
+                        line-height: 120%;
+                        color: $color-accent;
+                    }
+                }
+            }
+
+            .wrapCity {
+                display: flex;
+                flex-direction: column;
+                gap: 32px;
+                margin-top: 39px;
+                margin-bottom: 40px;
+
+                @media screen and (min-width: 768px) {
+                    flex-direction: row;
+                    flex-wrap: wrap;
+                    max-width: 50%;
+                    margin: 39px auto 40px;
+                }
+                @media screen and (min-width: $toggleDesktop) {
+                    flex-wrap: nowrap;
+                    max-width: 100%;
+                    margin: 24px 0;
+                }
+
+                .item {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    gap: 6px;
+
+                    @media screen and (min-width: 768px) {
+                        flex: 1 1 40%;
+                    }
+
+                    @media screen and (min-width: $toggleDesktop) {
+                        align-items: start;
+                    }
+
+                    .titleCity {
+                        font-weight: 500;
+                        font-size: 16px;
+                        line-height: 120%;
+                        color: $color-accent;
+                    }
+
+                    .wrapLink {
+                        font-weight: 500;
+                        font-size: 16px;
+                        line-height: 120%;
+                        color: #000;
+                    }
+                }
+            }
+
+            .wrapSocia {
+                display: none;
+
+                @media screen and (min-width: $toggleDesktop) {
+                    position: relative;
+                    display: flex;
+                    align-items: center;
+                    column-gap: 32px;
+                    padding-top: 16px;
+
+                    &::before {
+                        content: '';
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 75%;
+                        height: 1px;
+                        background: #D9D9D9;
+                    }
+
+                    .link {
+                        display: flex;
+                        align-items: center;
+                        column-gap: 8px;
+                        font-weight: 500;
+                        font-size: 16px;
+                        line-height: 120%;
+                        text-decoration: underline;
+                        color: $color-accent;
+                        transition: all .2s ease-in;
+
+                        &:hover {
+                            text-decoration: none;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .mobBlock {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 26px;
+        padding: 24px;
+        border: 1px solid #D9D9D9;
+        
+        @media screen and (min-width: $toggleDesktop) {
+            display: none;
+        }
+
+        .link {
+            display: flex;
+            align-items: center;
+            column-gap: 8px;
+            font-family: Inter;
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 100%;
+            text-align: center;
+            text-decoration: underline;
+            color: $color-accent;
+        }
+
+        .confidentiality {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            text-align: center;            
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 100%;
+            letter-spacing: -0.3px;
+            color: #6F6F6F;
+        }
+    }
+}

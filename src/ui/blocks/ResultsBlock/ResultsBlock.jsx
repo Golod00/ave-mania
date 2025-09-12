@@ -14,5 +14,5 @@ export default function ResultsBlock() {
 
   if (!dataJson) return <p>Завантаження...</p>;
 
-  return <DataTable title="Проміжні результати" dataJson={dataJson} />;
+  return <DataTable id="ownProjects" title="Проміжні результати" dataJson={dataJson} />;
 }

@@ -7,21 +7,19 @@ import Image from 'next/image';
 
 export default function FormBlock() {
     return (
-        <section className={classes.formBlock}>
+        <section id="form" className={classes.formBlock}>
             <div className={classes.bg}>
                 <picture>
                     <source
                         srcSet="/images/FormBlock/bg.webp"
                         media="(min-width: 1240px)" 
                     />
-                    <TextTitle>
-                        <Image
-                            src="/images/FormBlock/bgMob.webp"
-                            width={610}
-                            height={428}
-                            alt="Image ave mania"
-                        />
-                    </TextTitle>
+                    <Image
+                        src="/images/FormBlock/bgMob.webp"
+                        width={610}
+                        height={428}
+                        alt="Image ave mania"
+                    />
                 </picture>
             </div>
             <div className="container">

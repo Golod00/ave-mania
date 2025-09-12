@@ -4,7 +4,7 @@ import Image from 'next/image';
 
 export default function CompetitionStages() {
     return (
-        <section className={classes.competitionStages}>
+        <section id='competitions' className={classes.competitionStages}>
             <div className={classes.wrapper}>
                 <div className={classes.wrapperImage}>
                     <div className={classes.image}>

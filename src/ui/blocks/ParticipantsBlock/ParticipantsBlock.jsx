@@ -14,5 +14,5 @@ export default function ParticipantsBlock() {
 
   if (!dataJson) return <p>Завантаження...</p>;
 
-  return <DataTable title="Учасники" dataJson={dataJson} />;
+  return <DataTable id="aboutUs" title="Учасники" dataJson={dataJson} />;
 }

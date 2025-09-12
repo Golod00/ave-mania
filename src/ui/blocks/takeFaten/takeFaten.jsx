@@ -4,7 +4,7 @@ import Image from 'next/image';
 
 export default function TakeFaten() {
     return (
-        <section className={classes.takeFaten}>
+        <section id='services' className={classes.takeFaten}>
             <div className={classes.bgwrap}>
                 <div className={classes.bgLeft}>
                     <div className={classes.itemOne}>

@@ -1,0 +1,155 @@
+.videoBlock {
+    position: relative;
+    margin-top: 179px;
+    overflow: visible;
+
+    @media screen and (min-width: $toggleDesktop) {
+        margin-top: 236px;
+    }
+
+    .mainWrapper {
+        position: absolute;
+        bottom: -40%;
+        left: -30%;
+        z-index: -1;
+
+        @media screen and (min-width: $toggleDesktop) {
+            left: 0;
+            bottom: -20%;
+        }
+
+        .wrapImg1 {
+
+            img {
+                width: 305px;
+                height: 305px;
+
+                @media screen and (min-width: 768px) {
+                    width: 450px;
+                    height: 450px;
+                }
+
+                @media screen and (min-width: $toggleDesktop) {
+                    width: 637px;
+                    height: 637px;
+                }
+            }
+        }
+
+        .wrapImg2 {
+            position: absolute;
+            bottom: 15%;
+            right: 20%;
+            z-index: -1;
+
+            @media screen and (min-width: $toggleDesktop) {
+                top: 83px;
+                right: inherit;
+                bottom: initial;
+                left: 56px;
+            }
+
+            img {
+                width: 47.55px;
+                height: 47.55px;
+
+                @media screen and (min-width: 768px) {
+                    width: 70px;
+                    height: 70px;
+                }
+
+                @media screen and (min-width: $toggleDesktop) {
+                    width: 99px;
+                    height: 99px;
+                }
+            }
+        }
+
+        .wrapIcon {
+            display: none;
+
+            @media screen and (min-width: $toggleDesktop) {
+                display: block;
+                position: absolute;
+                top: 218px;
+                left: 43px;
+            }
+        }
+    }
+
+    .text {
+        position: relative;
+        max-width: 242px;
+        margin: 0 auto 23px;
+        transform: rotate(352deg);
+        font-family: "overdozesans";
+        font-weight: 700;
+        font-size: 24.56px;
+        line-height: 80%;
+        text-align: center;
+        color: #000;
+
+        @media screen and (min-width: $toggleDesktop) {
+            max-width: 394px;
+            margin: 0 auto 24px;
+            font-size: 35.53px;
+        }
+
+        .wrapIcon {
+            position: absolute;
+            bottom: -92%;
+            right: 14%;
+
+            @media screen and (min-width: $toggleDesktop) {
+                bottom: -31px;
+                right: -28px;
+                transform: rotate(12deg);
+
+                svg {
+                    width: 63px;
+                    height: 67px;
+                }
+            }
+        }
+    }
+
+    .videoContainer {
+        position: relative;
+
+        @media screen and (min-width: $toggleDesktop) {
+            max-width: 1030px;
+            margin: 0 auto;
+        }
+        
+        .video{
+            width: 100%;
+            min-height: 328px;  
+            border-radius: 54.14px;
+            object-fit: cover;
+
+            @media screen and (min-width: $toggleDesktop) {
+                max-height: 532px;
+            }
+        }
+
+        .btn {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1;
+            background: transparent;
+            cursor: pointer;
+
+            svg {
+                width: 54px;
+                height: 54px;
+
+                @media screen and (min-width: $toggleDesktop) {
+                    width: 113px;
+                    height: 113px;
+                }
+            }
+        }
+    }
+}
