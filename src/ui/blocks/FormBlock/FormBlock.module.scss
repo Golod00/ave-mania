@@ -5,6 +5,7 @@
     padding-top: 100px;
 
     @media screen and (min-width: $toggleDesktop) {
+        min-height: 824px;
         margin-bottom: 140px;
         padding-top: 30px;
     }
@@ -22,7 +23,7 @@
             object-fit: fill;
 
             @media screen and (min-width: $toggleDesktop) {
-               
+                max-height: 824px;
             }
         }
     }
