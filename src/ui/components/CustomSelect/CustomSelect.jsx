@@ -49,17 +49,19 @@ export default function CustomSelect({
         </span>
       </div>
       {open && (
-        <ul className={classes.options}>
-          {options.map((opt) => (
-            <li
-              key={opt.value}
-              className={opt.value === value ? classes.active : ""}
-              onClick={() => handleSelect(opt.value)}
-            >
-              {opt.label}
-            </li>
-          ))}
-        </ul>
+        <div className={classes.options}>
+          <ul>
+            {options.map((opt) => (
+              <li
+                key={opt.value}
+                className={opt.value === value ? classes.active : ""}
+                onClick={() => handleSelect(opt.value)}
+              >
+                {opt.label}
+              </li>
+            ))}
+          </ul>
+        </div>
       )}
     </div>
   );

@@ -8,6 +8,7 @@ import "swiper/css/pagination";
 
 import classes from "./Form.module.scss";
 import CustomSelect from "@/ui/components/CustomSelect/CustomSelect";
+import Image from "next/image";
 
 export default function Form() {
   const swiperRef = useRef(null);
@@ -26,6 +27,7 @@ export default function Form() {
     type120: "",
     containers11: "",
     type11: "",
+    containersAvailable: "",
   });
 
   const [errors, setErrors] = useState({});
@@ -34,7 +36,16 @@ export default function Form() {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+
+    if (name === "phone") {
+      const placeholderDigits = (e.target.placeholder.match(/\d/g) || []).length;
+      const digitsOnly = value.replace(/\D/g, "");
+      if (digitsOnly.length <= placeholderDigits) {
+        setFormData((prev) => ({ ...prev, phone: digitsOnly }));
+      }
+    } else {
+      setFormData((prev) => ({ ...prev, [name]: value }));
+    }
   };
 
   const validateStep = (step) => {
@@ -48,8 +59,21 @@ export default function Form() {
       case 1:
         if (!formData.contactPerson) newErrors.contactPerson = "Вкажіть контактну особу";
         if (!formData.position) newErrors.position = "Вкажіть посаду";
-        if (!formData.phone) newErrors.phone = "Вкажіть телефон";
-        if (!formData.email) newErrors.email = "Вкажіть email";
+
+        const phoneDigits = formData.phone.replace(/\D/g, "");
+        const phonePlaceholder = document.querySelector('input[name="phone"]')?.placeholder || "";
+        const placeholderDigits = (phonePlaceholder.match(/\d/g) || []).length;
+        if (!formData.phone) {
+          newErrors.phone = "Вкажіть телефон";
+        } else if (phoneDigits.length !== placeholderDigits) {
+          newErrors.phone = `Телефон повинен містити рівно ${placeholderDigits} цифр`;
+        }
+
+        if (!formData.email) {
+          newErrors.email = "Вкажіть email";
+        } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(formData.email)) {
+          newErrors.email = "Введіть коректний email";
+        }
         break;
       case 2:
         if (!formData.kidsCount) newErrors.kidsCount = "Вкажіть кількість дітей";
@@ -59,8 +83,9 @@ export default function Form() {
         if (formData.container === "yes") {
           if (!formData.containers120) newErrors.containers120 = "Вкажіть кількість контейнерів 120 л";
           if (!formData.type120) newErrors.type120 = "Оберіть тип відходів 120 л";
-          if (!formData.containers11) newErrors.containers11 = "Вкажіть кількість контейнерів 11 м³";
-          if (!formData.type11) newErrors.type11 = "Оберіть тип відходів 11 м³";
+          if (!formData.containers11) newErrors.containers11 = "Вкажіть кількість контейнерів 1.1 м³";
+          if (!formData.type11) newErrors.type11 = "Оберіть тип відходів 1.1 м³";
+          if (!formData.containersAvailable) newErrors.containersAvailable = "Оберіть наявність контейнерів";
         }
         break;
     }
@@ -68,113 +93,197 @@ export default function Form() {
     return Object.keys(newErrors).length === 0;
   };
 
-  const formSteps = [0, 1, 2];
-  if (formData.container === "yes") formSteps.push(3);
+  const StepContainers = ({ active }) => {
+    if (!active) return <div className={classes.step} style={{ height: 0 }} />;
+
+    return (
+        <div className={classes.step}>
+          <div className={classes.wrap}>
+            <p className={classes.title}>Кількість контейнерів 120 л</p>
+            <input
+                className={classes.input}
+                type="number"
+                name="containers120"
+                placeholder="Кількість контейнерів 120 л"
+                value={formData.containers120}
+                onChange={handleChange}
+            />
+            {errors.containers120 && <p className={classes.error}>{errors.containers120}</p>}
+          </div>
+
+          <div className={classes.wrapCustomSelect}>
+            <p className={classes.title}>Вид відходів (120 л)</p>
+            <CustomSelect
+                parentClassName={classes.selectWrapper}
+                selectedClassName={classes.select}
+                options={[
+                  { value: "plastic", label: "Пластик" },
+                  { value: "glass", label: "Скло" },
+                  { value: "paper", label: "Папір" },
+                  { value: "mixed", label: "Змішані" },
+                ]}
+                name="type120"
+                value={formData.type120}
+                onChange={handleChange}
+                placeholder="Вид відходів (120 л)"
+            />
+            {errors.type120 && <p className={classes.error}>{errors.type120}</p>}
+          </div>
+
+          <div className={classes.wrap}>
+            <p className={classes.title}>Кількість контейнерів 1.1 м³</p>
+            <input
+                className={classes.input}
+                type="number"
+                name="containers11"
+                placeholder="Кількість контейнерів 1.1 м³"
+                value={formData.containers11}
+                onChange={handleChange}
+            />
+            {errors.containers11 && <p className={classes.error}>{errors.containers11}</p>}
+          </div>
+
+          <div className={classes.wrapCustomSelect}>
+            <p className={classes.title}>Вид відходів (1.1 м³)</p>
+            <CustomSelect
+                parentClassName={classes.selectWrapper}
+                selectedClassName={classes.select}
+                options={[
+                  { value: "plastic", label: "Пластик" },
+                  { value: "glass", label: "Скло" },
+                  { value: "paper", label: "Папір" },
+                  { value: "mixed", label: "Змішані" },
+                ]}
+                name="type11"
+                value={formData.type11}
+                onChange={handleChange}
+                placeholder="Вид відходів (1.1 м³)"
+            />
+            {errors.type11 && <p className={classes.error}>{errors.type11}</p>}
+          </div>
+
+          <div className={classes.wrapCustomSelect}>
+            <p className={classes.title}>Наявність контейнерів</p>
+            <CustomSelect
+                parentClassName={classes.selectWrapper}
+                selectedClassName={classes.select}
+                options={[
+                  { value: "paper-11", label: "1.1 м³ - Папір" },
+                  { value: "glass-11", label: "1.1 м³ - Скло" },
+                  { value: "plastic-11", label: "1.1 м³ - Пластик" },
+                ]}
+                name="containersAvailable"
+                value={formData.containersAvailable}
+                onChange={handleChange}
+                placeholder="Оберіть наявність"
+            />
+            {errors.containersAvailable && <p className={classes.error}>{errors.containersAvailable}</p>}
+          </div>
+        </div>
+    );
+  };
 
   const steps = [
-    // Шаг 0
     <div className={classes.step} key={0}>
       <div className={classes.wrap}>
         <p className={classes.title}>Назва закладу</p>
         <input
-          className={classes.input}
-          type="text"
-          name="name"
-          placeholder="Ужгородська початкова школа № 1"
-          value={formData.name}
-          onChange={handleChange}
+            className={classes.input}
+            type="text"
+            name="name"
+            placeholder="Ужгородська початкова школа № 1"
+            value={formData.name}
+            onChange={handleChange}
         />
         {errors.name && <p className={classes.error}>{errors.name}</p>}
       </div>
       <div className={classes.wrap}>
         <p className={classes.title}>Населений пункт</p>
         <input
-          className={classes.input}
-          type="text"
-          name="city"
-          placeholder="Ужгород"
-          value={formData.city}
-          onChange={handleChange}
+            className={classes.input}
+            type="text"
+            name="city"
+            placeholder="Ужгород"
+            value={formData.city}
+            onChange={handleChange}
         />
         {errors.city && <p className={classes.error}>{errors.city}</p>}
       </div>
       <div className={classes.wrap}>
         <p className={classes.title}>Вулиця</p>
         <input
-          className={classes.input}
-          type="text"
-          name="street"
-          placeholder="вулиця Висока, 4"
-          value={formData.street}
-          onChange={handleChange}
+            className={classes.input}
+            type="text"
+            name="street"
+            placeholder="вулиця Висока, 4"
+            value={formData.street}
+            onChange={handleChange}
         />
         {errors.street && <p className={classes.error}>{errors.street}</p>}
       </div>
     </div>,
 
-    // Шаг 1
     <div className={classes.step} key={1}>
       <div className={classes.wrap}>
         <p className={classes.title}>Контактна особа</p>
         <input
-          className={classes.input}
-          type="text"
-          name="contactPerson"
-          placeholder="Прізвище та ім’я"
-          value={formData.contactPerson}
-          onChange={handleChange}
+            className={classes.input}
+            type="text"
+            name="contactPerson"
+            placeholder="Прізвище та ім’я"
+            value={formData.contactPerson}
+            onChange={handleChange}
         />
         {errors.contactPerson && <p className={classes.error}>{errors.contactPerson}</p>}
       </div>
       <div className={classes.wrap}>
         <p className={classes.title}>Посада</p>
         <input
-          className={classes.input}
-          type="text"
-          name="position"
-          placeholder="Завуч з навчально виховної роботи"
-          value={formData.position}
-          onChange={handleChange}
+            className={classes.input}
+            type="text"
+            name="position"
+            placeholder="Завуч з навчально виховної роботи"
+            value={formData.position}
+            onChange={handleChange}
         />
         {errors.position && <p className={classes.error}>{errors.position}</p>}
       </div>
       <div className={classes.wrap}>
         <p className={classes.title}>Телефон</p>
         <input
-          className={classes.input}
-          type="tel"
-          name="phone"
-          placeholder="+38 097 000 00 00"
-          value={formData.phone}
-          onChange={handleChange}
+            className={classes.input}
+            type="tel"
+            name="phone"
+            placeholder="+38 097 000 00 00"
+            value={formData.phone}
+            onChange={handleChange}
         />
         {errors.phone && <p className={classes.error}>{errors.phone}</p>}
       </div>
       <div className={classes.wrap}>
         <p className={classes.title}>Email</p>
         <input
-          className={classes.input}
-          type="email"
-          name="email"
-          placeholder="mail.mail@mail.com"
-          value={formData.email}
-          onChange={handleChange}
+            className={classes.input}
+            type="email"
+            name="email"
+            placeholder="mail.mail@mail.com"
+            value={formData.email}
+            onChange={handleChange}
         />
         {errors.email && <p className={classes.error}>{errors.email}</p>}
       </div>
     </div>,
 
-    // Шаг 2
     <div className={classes.step} key={2}>
       <div className={classes.wrap}>
         <p className={classes.title}>Орієнтовна кількість дітей</p>
         <input
-          className={classes.input}
-          type="number"
-          name="kidsCount"
-          placeholder="250"
-          value={formData.kidsCount}
-          onChange={handleChange}
+            className={classes.input}
+            type="number"
+            name="kidsCount"
+            placeholder="250"
+            value={formData.kidsCount}
+            onChange={handleChange}
         />
         {errors.kidsCount && <p className={classes.error}>{errors.kidsCount}</p>}
       </div>
@@ -184,21 +293,21 @@ export default function Form() {
         <div className={classes.wrap}>
           <label>
             <input
-              type="radio"
-              name="container"
-              value="yes"
-              checked={formData.container === "yes"}
-              onChange={handleChange}
+                type="radio"
+                name="container"
+                value="yes"
+                checked={formData.container === "yes"}
+                onChange={handleChange}
             />
             Так
           </label>
           <label>
             <input
-              type="radio"
-              name="container"
-              value="no"
-              checked={formData.container === "no"}
-              onChange={handleChange}
+                type="radio"
+                name="container"
+                value="no"
+                checked={formData.container === "no"}
+                onChange={handleChange}
             />
             Ні
           </label>
@@ -207,78 +316,11 @@ export default function Form() {
       </div>
     </div>,
 
-    // Шаг 3 — контейнеры
-    formData.container === "yes" && (
-      <div className={classes.step} key={3}>
-        <div className={classes.wrap}>
-          <p className={classes.title}>Кількість контейнерів 120 л</p>
-          <input
-            className={classes.input}
-            type="number"
-            name="containers120"
-            placeholder="Кількість контейнерів 120 л"
-            value={formData.containers120}
-            onChange={handleChange}
-          />
-          {errors.containers120 && <p className={classes.error}>{errors.containers120}</p>}
-        </div>
+    ...(formData.container === "yes" ? [<StepContainers key={3} active={activeStep === 3} />] : []),
+  ];
 
-        <div className={classes.wrapCustomSelect}>
-          <p className={classes.title}>Вид відходів (120 л)</p>
-          <CustomSelect
-            parentClassName={classes.selectWrapper}
-            selectedClassName={classes.select}
-            options={[
-              { value: "plastic", label: "Пластик" },
-              { value: "paper", label: "Папір" },
-              { value: "glass", label: "Скло" },
-              { value: "mixed", label: "Змішані" },
-            ]}
-            name="type120"
-            value={formData.type120}
-            onChange={handleChange}
-            placeholder="Вид відходів (120 л)"
-          />
-          {errors.type120 && <p className={classes.error}>{errors.type120}</p>}
-        </div>
-
-        <div className={classes.wrap}>
-          <p className={classes.title}>Кількість контейнерів 11 м³</p>
-          <input
-            className={classes.input}
-            type="number"
-            name="containers11"
-            placeholder="Кількість контейнерів 11 м³"
-            value={formData.containers11}
-            onChange={handleChange}
-          />
-          {errors.containers11 && <p className={classes.error}>{errors.containers11}</p>}
-        </div>
-
-        <div className={classes.wrapCustomSelect}>
-          <p className={classes.title}>Вид відходів (11 м³)</p>
-          <CustomSelect
-            parentClassName={classes.selectWrapper}
-            selectedClassName={classes.select}
-            options={[
-              { value: "plastic", label: "Пластик" },
-              { value: "paper", label: "Папір" },
-              { value: "glass", label: "Скло" },
-              { value: "mixed", label: "Змішані" },
-            ]}
-            name="type11"
-            value={formData.type11}
-            onChange={handleChange}
-            placeholder="Вид відходів (11 м³)"
-          />
-          {errors.type11 && <p className={classes.error}>{errors.type11}</p>}
-        </div>
-      </div>
-    ),
-  ].filter(Boolean);
-
-  const lastFormStepIndex = steps.length - 1;
-  const isSendStep = activeStep === lastFormStepIndex;
+  const lastStepIndex = steps.length - 1;
+  const isSendStep = activeStep === lastStepIndex;
 
   const goNext = () => {
     if (!validateStep(activeStep)) return;
@@ -294,28 +336,40 @@ export default function Form() {
   const goPrev = () => swiperRef.current.slidePrev();
 
   const handleSubmit = async () => {
-    const telegramToken = "YOUR_BOT_TOKEN";
-    const chatId = "YOUR_CHAT_ID";
+    const telegramToken = "7278240963:AAGsreP339yvgjiMNIB_G9qsX0n33kORENg";
+    const chatId = "421809023";
+
     const message = `
-      Назва закладу: ${formData.name}
-      Місто: ${formData.city}
-      Вулиця: ${formData.street}
-      Контактна особа: ${formData.contactPerson}
-      Посада: ${formData.position}
-      Телефон: ${formData.phone}
-      Email: ${formData.email}
-      Кількість дітей: ${formData.kidsCount}
-      Контейнери: ${formData.container}
+      📋 *Нова заявка з форми*
+      
+      🏫 *Назва закладу:* ${formData.name}
+      📍 *Місто:* ${formData.city}
+      🏠 *Вулиця:* ${formData.street}
+      
+      👤 *Контактна особа:* ${formData.contactPerson}
+      💼 *Посада:* ${formData.position}
+      📞 *Телефон:* ${formData.phone}
+      ✉️ *Email:* ${formData.email}
+      
+      👶 *Кількість дітей:* ${formData.kidsCount}
+      🗑 *Контейнери:* ${formData.container === "yes" ? "Так" : "Ні"}
+      
       ${formData.container === "yes" ? `
-      120л: ${formData.containers120} (${formData.type120})
-      11м³: ${formData.containers11} (${formData.type11})
+      📦 *120 л:* ${formData.containers120} (${formData.type120})
+      📦 *1.1 м³:* ${formData.containers11} (${formData.type11})
+      ✅ *Наявність контейнерів:* ${formData.containersAvailable}
       ` : ""}
-      `;
+    `;
+
     try {
       await fetch(`https://api.telegram.org/bot${telegramToken}/sendMessage`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ chat_id: chatId, text: message }),
+        body: JSON.stringify({
+          chat_id: chatId,
+          text: message,
+          parse_mode: "Markdown"
+        }),
       });
       setIsSubmitted(true);
     } catch (err) {
@@ -324,38 +378,75 @@ export default function Form() {
   };
 
   return (
-    <div className={`${classes.formWrapper} ${isSubmitted ? classes.successWrapper : ""}`}>
-      <Swiper
-        modules={[Pagination]}
-        pagination={{ clickable: true, el: ".customPagination" }}
-        allowTouchMove={false}
-        onSwiper={(swiper) => (swiperRef.current = swiper)}
-        onSlideChange={(swiper) => setActiveStep(swiper.activeIndex)}
-        className={classes.swiper}
-      >
-        {steps.map((s, i) => (
-          <SwiperSlide key={i}>{s}</SwiperSlide>
-        ))}
-      </Swiper>
+      <div className={`${classes.formWrapper} ${isSubmitted ? classes.successWrapper : ""}`}>
+        {!isSubmitted && (
+            <>
+              <Swiper
+                  modules={[Pagination]}
+                  pagination={{ clickable: true, el: ".customPagination" }}
+                  allowTouchMove={false}
+                  onSwiper={(swiper) => (swiperRef.current = swiper)}
+                  onSlideChange={(swiper) => setActiveStep(swiper.activeIndex)}
+                  className={classes.swiper}
+              >
+                {steps.map((s, i) => (
+                    <SwiperSlide key={i}>{s}</SwiperSlide>
+                ))}
+              </Swiper>
 
-      {!isSubmitted && (
-        <div className={classes.navWrapper}>
-          <button className={classes.btnNext} onClick={goNext}>
-            {isSendStep ? "Надіслати" : "Далі"}
-          </button>
+              <div className={classes.navWrapper}>
+                <button className={classes.btnNext} onClick={goNext}>
+                  {isSendStep ? "Надіслати" : "Далі"}
+                </button>
+                <div className={`${classes.customPagination} customPagination`}></div>
+                {activeStep > 0 && <button className={classes.btnPrev} onClick={goPrev}>Повернутись назад</button>}
+              </div>
+            </>
+        )}
 
-          <div className={`${classes.customPagination} customPagination`}></div>
-
-          {activeStep > 0 && <button className={classes.btnPrev} onClick={goPrev}>Повернутись назад</button>}
-        </div>
-      )}
-
-      {isSubmitted && (
-        <div className={classes.success}>
-          <h2 className={classes.title}>Дякуємо!</h2>
-          <p>Форма успішно відправлена. На ваш e-mail був надісланий номер поданої заявки.</p>
-        </div>
-      )}
-    </div>
+        {isSubmitted && (
+            <div className={classes.success}>
+              <div className={classes.bgSuccess}>
+                <picture>
+                  <source
+                      srcSet="/images/FormBlock/bg-success-des.webp"
+                      media="(min-width: 1240px)"
+                  />
+                  <Image
+                      src="/images/FormBlock/bg-success.webp"
+                      width={400}
+                      height={400}
+                      alt="Image ave mania"
+                  />
+                </picture>
+              </div>
+              <div className={classes.bgIcons}>
+                <div className={`${classes.bgIconsWrap} ${classes.icon1}`}>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="40" height="63" viewBox="0 0 40 63" fill="none">
+                    <path d="M15.1511 23.6918C15.4637 23.5343 15.7377 23.2871 16.0022 23.0506C16.902 22.245 17.1387 21.2773 16.6786 20.1443C16.3228 19.266 15.9818 18.382 15.6205 17.4662C16.5818 17.1348 17.5183 16.8309 18.4388 16.4844C18.7939 16.351 18.9661 16.4531 19.0585 16.7792C19.2647 17.5066 19.6133 18.1616 20.0016 18.8072C20.3607 19.4038 20.827 19.7069 21.5276 19.7255C22.2934 19.7457 23.0203 19.5689 23.7538 19.4029C25.0223 19.1154 26.1648 19.3381 27.1894 20.191C27.6043 20.5353 27.8946 20.9641 28.1006 21.4206C28.7684 22.9043 29.3599 24.4223 30.0065 25.9162C31.2094 28.6948 32.1058 31.5893 33.2101 34.4027C35.28 39.6768 36.9066 45.1023 38.794 50.4379C39.0432 51.1425 39.1242 51.9058 39.3108 52.6356C39.3894 52.9445 39.3802 53.2648 39.0843 53.35C38.1382 53.6236 37.5091 54.5023 36.44 54.5969C35.7775 54.6558 35.2773 54.5404 34.8108 54.1365C34.5122 53.8771 34.2609 53.5627 33.9668 53.2973C33.6418 53.0032 32.402 52.8724 32.0707 53.0838C31.8887 53.1999 31.8284 53.4048 31.8182 53.6026C31.7941 54.0792 31.7869 54.5566 31.7878 55.0341C31.7887 55.9718 31.3553 56.6209 30.5143 57.0066C30.4062 57.0562 30.275 57.0679 30.1825 57.1356C29.0582 57.9542 28.0576 57.5445 27.2034 56.7263C26.7657 56.3066 26.3742 56.3247 25.8492 56.3326C25.231 56.3426 24.8928 56.6316 24.6213 57.0949C24.3601 57.5414 24.1155 57.9983 23.8849 58.4621C23.6838 58.8675 23.41 59.1876 23.0113 59.4084C21.7546 60.1031 20.502 59.6152 19.81 58.0799C19.2394 56.8148 18.7065 55.5286 18.2347 54.2228C17.4486 52.0479 16.6474 49.873 15.9926 47.6565C14.8326 43.73 13.6989 39.7951 13.0181 35.7414C12.7292 34.0197 12.3776 32.3079 12.0711 30.5879C11.6743 28.365 13.143 24.7026 15.1511 23.6918ZM14.4004 14.2091C15.7192 13.8261 16.7568 12.9344 17.9258 12.2808C18.61 11.898 18.7706 11.9617 19.0866 12.6637C19.2005 12.9167 19.29 13.181 19.3799 13.4444C19.5431 13.9266 19.3981 14.2644 18.9557 14.5441C18.9113 14.5718 18.8663 14.5997 18.8209 14.6263C18.1438 15.0278 17.4074 15.2707 16.6709 15.5239C16.3722 15.6283 16.0764 15.7478 15.7716 15.8302C15.4375 15.9206 15.0311 16.274 14.7857 16.0364C14.4647 15.7263 14.3017 15.2317 14.1287 14.793C14.04 14.5672 14.1345 14.2862 14.4004 14.2091ZM10.0195 28.3108C10.0276 30.2323 10.3411 32.1048 10.6992 33.9846C11.5564 38.4808 12.5141 42.9498 13.8685 47.3243C15.1408 51.435 16.4716 55.5276 18.2057 59.4688C18.6831 60.5542 19.5667 61.5391 20.7863 61.4831C22.8419 61.3889 24.9866 61.166 25.8164 58.7007C25.8363 58.6419 25.9276 58.6068 26.08 58.4848C27.3397 59.6578 28.8424 59.3794 30.2881 58.9058C31.7758 58.4193 33.2502 57.8021 33.4264 55.6819C34.5539 56.5081 35.6436 56.3911 36.7604 56.1872C38.248 55.9155 39.4497 55.0658 40.6791 54.2803C41.2641 53.907 41.4677 53.2705 41.2986 52.5961C41.0184 51.4792 40.8509 50.3367 40.4743 49.2399C38.3914 43.1761 36.3816 37.0856 34.1001 31.094C32.8129 27.7147 31.5768 24.317 30.0624 21.0241C28.7291 18.1253 26.8313 17.0291 23.8312 17.7617C22.0336 18.2009 21.8415 18.0853 21.3528 16.3024C21.2897 16.0728 21.193 15.8534 21.11 15.6292C21.0265 15.4038 20.9852 15.2062 21.1146 14.9548C21.4888 14.2304 21.3858 13.4535 21.1101 12.7501C20.5234 11.253 20.3815 9.65303 19.9464 8.12928C19.5237 6.64805 19.3626 5.0452 18.0987 3.8788C17.6028 3.42072 17.2531 3.233 16.5751 3.36809C15.0591 3.67157 13.7929 4.52379 12.4411 5.16588C11.4332 5.64411 10.1518 5.62123 9.44331 6.69322C8.53908 6.78505 8.89883 7.47269 8.99813 7.86584C9.26091 8.90616 9.5748 9.94714 10.0032 10.9274C10.6097 12.3146 10.8221 13.9378 12.1956 14.9013C12.5794 16.1834 13.2483 17.3167 13.9007 18.4741C14.1887 18.9855 14.2394 19.6942 14.4835 20.2771C14.765 20.9508 14.6972 21.4826 14.1589 21.997C13.9027 22.2409 13.6974 22.5382 13.3907 22.7345C12.3355 23.4124 11.5658 24.3586 10.8737 25.3892C10.2763 26.2797 10.0141 27.2366 10.0195 28.3108Z" fill="#191818"/>
+                    <path d="M19.0657 40.4483C18.9553 39.522 19.6166 38.974 20.4952 39.2395C20.7352 39.3124 20.7321 39.5268 20.8315 39.6861C21.5028 40.7602 22.1414 41.858 22.8632 42.8972C23.5205 43.8431 24.2826 44.6938 25.3422 45.2446C26.0908 45.6338 26.7368 45.5244 27.2999 44.989C28.2407 44.0949 28.9565 43.0423 29.0425 41.6947C29.1642 39.7832 29.2185 37.8701 28.5308 36.3195C28.1884 35.3804 27.9996 34.6996 27.8923 33.9826C27.8012 33.3748 28.0078 33.2583 28.5436 33.1773C29.5232 33.0295 29.4968 32.9948 29.8514 33.9209C30.8557 36.5415 31.0553 39.2708 30.8587 42.03C30.7308 43.8252 29.8376 45.2933 28.4176 46.3702C26.6535 47.7082 24.2558 47.5456 22.6274 46.0037C21.1398 44.5952 20.1866 42.7971 19.2144 41.0224C19.1221 40.8541 19.0887 40.6435 19.0657 40.4483ZM17.799 31.9304C17.7555 31.5794 17.862 31.1993 18.2363 31.2376C18.6716 31.2818 19.1739 30.6813 19.5746 31.4206C19.8418 31.9136 20.0104 32.4312 20.2282 32.9479C20.4158 33.2463 20.5441 33.59 20.5361 33.9456C20.528 34.348 20.9315 34.8635 20.1746 35.0952C19.3264 35.3555 18.9571 35.3447 18.5827 34.6439C18.1344 33.8056 17.9154 32.8765 17.799 31.9304ZM23.9493 29.8466C23.876 29.2378 24.1992 29.122 24.6832 29.0172C25.1633 28.9138 25.5407 28.8545 25.68 29.467C25.7413 29.7381 25.8555 29.996 25.9579 30.2961C26.1766 30.594 26.2912 30.9702 26.3558 31.3658C26.4936 32.2125 26.1842 32.6011 25.3251 32.657C25.1217 32.6701 24.9055 32.6672 24.8339 32.434C24.565 31.5631 24.0628 30.7777 23.9493 29.8466ZM15.9925 47.6562C16.6474 49.8728 17.4486 52.0476 18.2346 54.2226C18.7065 55.5283 19.2393 56.8145 19.81 58.0797C20.5019 59.6149 21.7546 60.1029 23.0113 59.4081C23.4099 59.1874 23.6837 58.8672 23.8848 58.4618C24.1154 57.9981 24.36 57.5411 24.6212 57.0946C24.8927 56.6313 25.231 56.3423 25.8491 56.3323C26.3742 56.3244 26.7656 56.3064 27.2033 56.726C28.0576 57.5442 29.0581 57.9539 30.1824 57.1353C30.2749 57.0676 30.4062 57.056 30.5142 57.0063C31.3553 56.6206 31.7887 55.9715 31.7877 55.0338C31.7868 54.5563 31.794 54.079 31.8181 53.6023C31.8284 53.4045 31.8886 53.1996 32.0707 53.0835C32.402 52.8721 33.6417 53.0029 33.9667 53.297C34.2609 53.5624 34.5121 53.8768 34.8108 54.1363C35.2772 54.5402 35.7775 54.6555 36.44 54.5966C37.509 54.5021 38.1381 53.6233 39.0842 53.3497C39.3801 53.2645 39.3893 52.9443 39.3107 52.6353C39.1241 51.9055 39.0432 51.1422 38.7939 50.4377C36.9065 45.1021 35.2799 39.6766 33.21 34.4024C32.1058 31.5891 31.2094 28.6946 30.0065 25.916C29.3599 24.422 28.7683 22.904 28.1005 21.4203C27.8945 20.9639 27.6042 20.535 27.1894 20.1908C26.1647 19.3378 25.0223 19.1151 23.7538 19.4026C23.0202 19.5686 22.2933 19.7454 21.5275 19.7252C20.8269 19.7067 20.3607 19.4035 20.0015 18.807C19.6132 18.1613 19.2646 17.5064 19.0585 16.7789C18.966 16.4528 18.7938 16.3507 18.4388 16.4841C17.5183 16.8307 16.5817 17.1345 15.6204 17.4659C15.9817 18.3817 16.3227 19.2658 16.6785 20.144C17.1387 21.277 16.902 22.2448 16.0022 23.0503C15.7376 23.2869 15.4636 23.534 15.151 23.6915C13.1429 24.7023 11.6742 28.3647 12.071 30.5876C12.3775 32.3077 12.7291 34.0194 13.018 35.7411C13.6988 39.7949 14.8326 43.7297 15.9925 47.6562Z" fill="#FCFDFD"/>
+                    <path d="M22.627 46.0035C24.2554 47.5454 26.6531 47.708 28.4172 46.37C29.8372 45.2931 30.7304 43.825 30.8583 42.0297C31.0549 39.2706 30.8553 36.5413 29.8511 33.9207C29.4964 32.9946 29.5228 33.0293 28.5432 33.1771C28.0074 33.258 27.8008 33.3746 27.8919 33.9824C27.9993 34.6993 28.188 35.3802 28.5304 36.3193C29.2181 37.8699 29.1638 39.783 29.0421 41.6945C28.9561 43.042 28.2403 44.0946 27.2995 44.9888C26.7364 45.5241 26.0904 45.6336 25.3418 45.2444C24.2822 44.6935 23.5201 43.8429 22.8628 42.8969C22.141 41.8578 21.5024 40.76 20.8312 39.6859C20.7317 39.5266 20.7348 39.3122 20.4948 39.2393C19.6162 38.9738 18.9549 39.5218 19.0653 40.4481C19.0883 40.6432 19.1217 40.8538 19.214 41.0222C20.1862 42.7969 21.1394 44.595 22.627 46.0035Z" fill="#191818"/>
+                    <path d="M20.1747 35.0951C20.9316 34.8634 20.5281 34.3479 20.5361 33.9455C20.5441 33.5898 20.4159 33.2461 20.2283 32.9477C20.0105 32.431 19.8418 31.9135 19.5747 31.4204C19.174 30.6811 18.6717 31.2817 18.2364 31.2374C17.8621 31.1992 17.7555 31.5793 17.799 31.9303C17.9155 32.8764 18.1345 33.8054 18.5827 34.6437C18.9572 35.3446 19.3265 35.3553 20.1747 35.0951Z" fill="#191818"/>
+                    <path d="M24.8339 32.435C24.9055 32.6682 25.1217 32.6711 25.3251 32.6579C26.1842 32.6021 26.4936 32.2135 26.3557 31.3668C26.2912 30.9711 26.1766 30.595 25.9579 30.297C25.8555 29.997 25.7413 29.739 25.68 29.4679C25.5407 28.8555 25.1633 28.9148 24.6832 29.0182C24.1992 29.123 23.876 29.2388 23.9493 29.8476C24.0628 30.7787 24.565 31.5641 24.8339 32.435Z" fill="#191818"/>
+                  </svg>
+                </div>
+                <div className={`${classes.bgIconsWrap} ${classes.icon2}`}>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="71" height="73" viewBox="0 0 71 73" fill="none">
+                    <path d="M39.5768 25.4079C39.7328 25.6542 40.7345 26.6453 41.8094 27.6161C42.884 28.5868 44.2146 29.8558 44.7745 30.4437C45.6676 31.3816 45.769 31.5758 45.616 32.0514C45.522 32.3429 45.4048 32.8751 45.3614 33.2046C45.2393 34.1336 43.8893 38.9989 43.4096 40.2403C42.9959 41.3109 42.3763 42.4855 38.3866 49.7635C35.8002 54.4811 33.68 57.3169 31.3818 59.131C29.2739 60.7952 27.9621 61.4534 27.2212 61.2189C26.7453 61.0681 26.5285 60.7695 25.8016 59.2661C24.7116 57.011 23.952 56.382 21.6233 55.8072C19.7546 55.3457 18.8097 54.7088 18.3559 53.6052C18.1809 53.179 17.8129 51.1063 17.5405 49.0112C16.936 44.3607 16.642 43.6726 14.6023 42.1278C13.0095 40.9215 12.0565 40.5438 8.78672 39.8219C7.59388 39.5587 6.60871 39.2531 6.59309 39.1414C6.54092 38.77 8.0835 36.6731 9.44137 35.269C12.1429 32.4759 14.7907 30.8154 17.9841 29.9125C19.7091 29.4246 20.6011 29.3202 26.0117 28.9726C31.1518 28.6423 34.4394 27.7464 37.7404 25.7766C38.5432 25.2977 39.2306 24.9124 39.2531 24.9294C39.2753 24.9462 39.4237 25.1655 39.5768 25.4079ZM45.2109 26.8568C47.1671 28.6781 47.5035 29.1567 47.1558 29.6204C46.97 29.8682 46.8347 29.8814 46.6824 29.6678C46.3491 29.2004 42.657 25.6959 41.8685 25.0987C41.2938 24.6635 41.2038 24.5088 41.3852 24.2668C41.7484 23.7824 42.0111 23.8444 42.8072 24.6025C43.2207 24.996 44.3013 26.0095 45.2109 26.8568ZM53.5311 19.401C54.9758 21.3204 57.2595 25.0127 57.861 26.4012C58.4751 27.8193 58.0823 27.9606 53.7362 27.8844C52.3382 27.86 50.7392 27.8911 50.1826 27.9534L49.1704 28.0669L47.8436 26.7801C44.8469 23.8738 43.9882 22.9988 43.727 22.586C43.41 22.0847 43.7975 19.9607 44.5296 18.1862C45.5215 15.7804 47.1525 14.3091 48.3469 14.7419C49.5266 15.17 52.0606 17.4471 53.5311 19.401ZM49.3424 13.14C47.5696 12.3713 46.1067 12.8336 44.5243 14.6629C43.444 15.9116 42.4577 18.1178 42.0265 20.2499L41.7406 21.6639L40.884 22.2052C40.4182 22.4996 39.8629 22.723 39.6675 22.6943C39.4706 22.6655 38.881 22.9402 38.3661 23.3001C37.0156 24.2444 34.3873 25.5253 32.7107 26.0562C30.9868 26.6016 28.0828 26.9661 23.4096 27.2229C19.1662 27.4562 16.8072 27.9942 14.1476 29.3359C10.9001 30.9744 8.06017 33.4984 5.79942 36.7551C4.45727 38.6885 4.26298 39.4714 4.88991 40.4171C5.22248 40.9185 5.76811 41.1005 9.75114 42.0385C11.0861 42.3528 11.9393 42.6887 12.7727 43.2287C14.8962 44.6044 14.9301 44.6784 15.6448 49.4602C16 51.8368 16.494 54.2087 16.7418 54.7278C18.1381 57.6517 21.8574 57.5593 22.9392 58.3785C23.7878 59.0213 24.6681 62.1703 25.9016 62.8761C27.4345 63.7538 29.5444 63.0706 32.5108 60.7368C33.9306 59.62 34.3683 59.1417 36.232 56.6711C38.1137 54.1771 38.7046 53.213 41.6486 47.8346C45.2236 41.3034 45.7854 39.9487 46.8741 35.2298C47.1538 34.0183 47.4549 32.907 47.5435 32.7607C47.6759 32.5416 47.9496 32.6827 49.0934 33.5611C51.3973 35.3304 52.4752 37.3796 52.2246 39.5149C51.9277 42.0441 48.2025 46.0925 47.9521 49.7101C47.9029 50.4232 47.9925 50.6978 48.3657 50.9804C49.2311 51.6358 49.61 51.328 49.8985 49.735C50.6967 45.3295 53.8625 43.0356 54.0781 39.4695C54.213 37.2329 52.8711 34.2237 51.1523 32.91C50.8249 32.66 50.5134 32.3275 50.4511 32.1622C50.2192 31.5453 56.5085 34.7986 57.9098 36.0203C59.1269 37.0818 59.1844 37.7988 58.2707 40.5226C57.6323 42.4249 57.4337 42.7869 55.3777 45.7844C51.5235 51.404 49.8484 52.3624 50.9515 53.1979C51.7493 53.802 51.9611 53.6001 55.3973 48.9563C58.9439 44.1636 59.6402 42.939 60.4682 40.0388C61.2518 37.2943 60.8589 35.8583 58.9239 34.3929C57.5235 33.3324 53.1959 31.0777 50.5729 30.0425C50.0229 29.8256 51.2246 29.7574 54.0961 29.8424C55.3556 29.8799 56.9134 29.8447 57.5535 29.7642C59.6999 29.4955 60.541 28.047 59.7611 25.9619C59.3359 24.8245 56.9914 20.8645 55.5804 18.9003C53.766 16.3749 51.0784 13.8932 49.3424 13.14Z" fill="black"/>
+                    <path d="M52.1377 23.0106C52.4113 23.5559 52.2311 24.2251 51.575 25.1C51.2348 25.5537 51.2155 25.5453 50.5403 24.66C50.1248 24.1153 50.1067 23.9677 50.4063 23.5682C50.8889 22.9246 51.7335 22.1912 51.8091 22.3499C51.8412 22.4179 51.9929 22.7229 52.1377 23.0106ZM53.6525 20.7475C53.3054 21.8043 53.113 21.9748 52.9691 21.3525C52.8902 21.0112 53.7152 19.5787 53.9069 19.7239C53.9433 19.7514 53.8297 20.2087 53.6525 20.7475ZM47.581 14.493C46.2516 14.6808 46.3242 14.898 48.1465 16.177C49.7827 17.3259 49.8074 17.3537 50.5486 18.9142L51.2975 20.4909L50.4421 21.5118C49.9775 22.0658 49.54 22.5394 49.4854 22.5471C49.4303 22.5549 49.0747 21.9445 48.7028 21.2041C48.1157 20.0353 47.8562 19.7235 46.8324 18.9594C46.1722 18.4665 45.3825 18.0007 45.0561 17.9116C44.5521 17.774 44.4337 17.8282 44.2256 18.2917C43.9222 18.9679 43.9122 18.9432 44.5667 19.1306C44.8868 19.2221 45.5416 19.599 46.0508 19.9846C46.7799 20.5368 47.1007 20.9711 47.654 22.1563L48.3456 23.6376L47.7149 24.273C47.363 24.6275 46.9041 25.0573 46.6765 25.246C46.297 25.5601 46.3094 25.6153 46.8513 26.0257C47.4287 26.4629 47.4419 26.4596 48.1745 25.7204L48.9142 24.9741L49.5831 25.6617C49.9467 26.0356 50.2801 26.4063 50.3134 26.4734C50.3464 26.5409 50.0463 26.918 49.6576 27.2966C49.269 27.6753 48.9439 28.0459 48.9482 28.1053C48.9528 28.167 49.3567 28.213 49.8735 28.2109C50.4936 28.208 50.8888 28.0756 51.0939 27.8021C51.3408 27.4728 51.479 27.4602 51.8404 27.7339C52.0843 27.9186 52.7327 28.0894 53.281 28.1132L54.2784 28.1569L53.5885 27.5662C52.2552 26.425 52.2097 26.314 52.7709 25.5656C53.2039 24.9881 53.3074 24.9379 53.4791 25.2223C53.5903 25.4068 54.3639 26.137 55.213 26.8591C56.5339 27.9821 56.8225 28.1558 57.2975 28.1141C57.8764 28.0634 58.4723 27.4674 58.3254 27.0865C58.2779 26.9628 58.1761 26.9423 58.1019 27.0412C57.9251 27.2771 55.0992 25.0708 54.4637 24.2011C54.0043 23.5719 54.0013 23.444 54.4231 22.4437C54.986 21.1085 54.9626 20.9256 54.0771 19.7375C53.1781 18.5326 53.1601 18.5224 52.7941 19.0105C52.6208 19.2416 52.4557 19.401 52.4188 19.373C52.3824 19.3454 52.0388 18.7296 51.6445 17.9847C51.0933 16.9425 50.6475 16.3956 49.6331 15.5163C48.3843 14.4346 48.2985 14.3917 47.581 14.493Z" fill="#1C1C1C"/>
+                    <path d="M24.8204 45.0534L25.264 47.0714C25.2052 47.1438 21.64 51.5501 21.5502 51.5744C21.4572 51.5997 20.6826 50.4 19.6695 48.6606C19.1065 47.6943 18.8721 47.0797 19.0006 46.9083C19.3348 46.4626 24.226 42.7601 24.3005 42.8964C24.3428 42.973 24.5753 43.9381 24.8204 45.0534ZM22.4803 36.2579C23.0798 37.4157 23.9536 40.0865 23.9922 40.8806C24.0062 41.1699 23.6279 41.5365 22.3585 42.4643C21.4542 43.125 20.1407 44.1388 19.4559 44.7042C18.7693 45.2711 18.1574 45.7002 18.0985 45.6557C18.0399 45.6113 17.378 44.4877 16.6257 43.1556C15.8735 41.8239 14.9261 40.2167 14.5177 39.5796C14.1141 38.9504 13.7873 38.4076 13.8007 38.3898C13.8144 38.3715 14.4578 37.9815 15.2435 37.5155C17.5428 36.1518 21.3002 34.6238 21.6684 34.9027C21.7677 34.9779 22.1331 35.5878 22.4803 36.2579ZM30.072 40.814C30.4414 42.3025 30.5628 42.6274 30.7596 43.2111L28.6874 44.6178C27.5525 45.3884 26.5988 46.047 26.5785 46.0741C26.5023 46.1757 26.257 45.198 25.9399 43.5262L25.6174 41.8269L27.6357 40.6123C28.7398 39.9474 29.6722 39.4115 29.6946 39.4285C29.7173 39.4457 29.8862 40.066 30.072 40.814ZM29.547 35.6938L29.6245 37.8226L27.5467 39.0309C26.4063 39.6941 25.4403 40.2466 25.405 40.2556C25.3706 40.2645 25.1611 39.5851 24.9479 38.771C24.7308 37.9423 24.212 36.6102 23.7907 35.7982L23.027 34.3273L24.5707 33.9952C26.3006 33.6233 29.1311 33.3087 29.3381 33.4654C29.4104 33.5202 29.5046 34.5228 29.547 35.6938ZM36.6967 37.6799C36.9814 38.4333 37.2763 39.2102 37.359 39.4234C37.4941 39.772 37.2504 39.9364 34.7764 41.1682L32.0443 42.5277C31.4919 40.8678 31.4731 40.5969 31.1609 38.6239L33.623 37.4351C34.9792 36.7801 36.1072 36.2626 36.1347 36.2834C36.1619 36.304 36.4122 36.9261 36.6967 37.6799ZM35.64 33.9035L35.7551 34.8317L33.4268 35.9796C32.1437 36.6122 31.0643 37.0958 31.0225 37.0571C30.9808 37.0184 30.9322 36.3805 30.915 35.6429C30.8553 33.1133 30.6544 33.3459 33.124 33.0866C34.3257 32.9605 35.3759 32.8824 35.4284 32.9151C35.4819 32.9486 35.5764 33.3895 35.64 33.9035ZM42.1729 28.6679C41.2887 29.294 38.8704 30.4885 37.6645 30.895L36.6475 31.2379L36.3523 30.0177C36.1887 29.3427 35.8695 28.3494 35.6376 27.7943L35.2183 26.7909L34.5658 27.0605L33.9133 27.3296L34.3067 28.144C34.7606 29.0842 35.2837 31.2021 35.1172 31.4241C35.0565 31.505 34.0255 31.6442 32.8544 31.729L30.7032 31.8855L30.4388 30.83C29.9358 28.8223 29.6289 28.4505 28.5357 28.5257L27.8026 28.5761L28.2929 29.2448C28.5598 29.6096 28.8864 30.3685 29.0106 30.9143L29.2386 31.9151L26.8733 32.2197C25.5622 32.3885 23.9794 32.6548 23.3226 32.817L22.1374 33.1099L20.2528 31.5707C18.1287 29.836 17.6093 29.6202 16.5936 30.0502L15.892 30.3466L16.3584 30.5488C17.2525 30.9361 19.6035 32.5526 20.0283 33.0723L20.4582 33.598L19.1938 34.0638C17.8288 34.5666 14.9624 35.9828 13.6521 36.8024C13.0154 37.1999 12.7833 37.2446 12.6294 36.9983C12.2201 36.3426 10.5174 34.6392 10.1722 34.5404C9.97281 34.4834 9.68211 34.6106 9.52118 34.8252C9.25442 35.1809 9.32367 35.3116 10.3584 36.4039C11.9713 38.1062 11.973 37.9603 10.5275 39.0292C9.87033 39.5148 9.34837 39.9664 9.35507 40.043C9.3619 40.1206 9.70331 40.2481 10.1295 40.3322C11.0613 40.5163 11.4878 40.0943 12.4393 39.3641C12.5952 39.2446 12.8617 39.5388 13.4464 40.4762C13.8788 41.1701 14.6329 42.168 15.1009 42.6655C16.2323 43.8696 16.7091 44.9 17.0262 46.8285C17.1697 47.7013 17.3852 48.3698 17.4983 48.2936C17.638 48.1994 18.1419 48.8605 19.0362 50.3123C20.8061 53.1855 20.9181 52.7961 20.2178 54.2477C19.6326 55.4608 19.6408 55.5062 20.4847 55.7464C20.9092 55.8669 21.0725 55.8109 21.1926 55.5038C21.9771 53.4962 21.4457 54.8599 23.8743 56.8747C25.2135 57.9854 25.5668 59.5648 27.7469 61.2396C27.9783 61.4174 28.327 61.4111 28.726 61.2216C29.062 61.0622 29.3766 60.8862 29.4136 60.8368C29.4514 60.7864 29.0875 60.4476 28.5949 60.0746C27.4675 59.2207 25.7513 57.3416 23.886 54.919L22.4251 53.0211L22.8605 52.212C23.2462 51.495 25.5552 48.7149 25.684 48.8124C25.7107 48.8326 26.1026 49.5932 26.544 50.4811C27.5674 52.5402 28.5012 53.7091 30.7672 55.7696C33.3521 58.1195 33.2231 57.8168 34.019 56.7553L32.2553 55.2615C29.6253 53.034 27.6284 50.2841 27.1116 48.1787C26.9686 47.5945 26.9827 47.5707 27.9077 46.8736C28.6438 46.3185 31.2611 44.5667 31.4629 44.4941C31.4883 44.4851 31.8749 44.9172 32.3218 45.4544C33.3111 46.6437 35.3984 48.2536 37.1345 49.1662C38.3719 49.8172 38.4423 49.8264 38.7739 49.3842C39.2372 48.7663 39.1255 48.5715 38.0265 48.0799C36.0797 47.2082 32.6161 44.2036 32.9877 43.7081C33.0864 43.5765 37.9426 41.0688 38.2091 41.0119C38.2384 41.0054 38.7538 41.5467 39.358 42.2181C39.9617 42.8895 40.7035 43.6256 41.0116 43.8589C41.4878 44.2195 41.6117 44.226 41.8546 43.902C42.3137 43.2898 42.218 43.0393 41.161 42.0799C40.073 41.0929 39.6968 40.5983 39.8637 40.3757C39.9852 40.2136 44.2349 38.3238 44.2878 38.2533C44.3763 38.1352 44.7382 36.6823 44.775 36.5388L41.8538 37.8591C40.2488 38.5843 38.8959 39.1511 38.8507 39.1169C38.6789 38.9868 38.1065 37.6715 37.8009 36.7051L37.4726 35.6665L39.0944 34.9283C43.427 32.9561 45.8522 31.7298 45.8765 31.4986C45.89 31.3703 45.6882 31.0973 45.4417 30.9106C45.0969 30.6495 44.8476 30.6387 44.4446 30.8671C44.1478 31.0354 42.3986 31.8536 40.5373 32.6955L37.1673 34.2191L37.0416 33.4252C36.9251 32.688 36.9522 32.62 37.4226 32.4717C39.0867 31.9463 42.3848 30.3408 43.4959 29.5148C43.8121 29.2797 43.7904 29.1812 43.3243 28.738C42.8285 28.266 42.7474 28.2611 42.1729 28.6679Z" fill="#1C1C1C"/>
+                  </svg>
+                </div>
+                <div className={`${classes.bgIconsWrap} ${classes.icon3}`}>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="71" height="70" viewBox="0 0 71 70" fill="none">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M20.3663 52.6405L20.6084 52.5373L20.7292 52.4858C21.501 53.3021 20.9714 52.3826 20.7803 52.6073L22.6223 53.2539C23.3804 53.3601 24.5019 53.3116 25.279 53.1235C29.025 52.5295 33.293 51.1405 36.598 49.1595C38.6743 47.9886 38.973 47.0027 40.5141 45.9166C41.6433 47.5826 42.0706 48.2589 42.9386 50.3222C43.3981 51.4146 43.9409 53.044 43.6421 54.0301C43.2223 55.0678 41.5545 57.2097 40.1024 57.8284C38.2872 58.6018 36.5797 58.6138 35.0443 58.6956C31.7311 58.962 25.4552 58.6306 22.9685 56.1118L20.7748 53.6115C19.9522 52.6738 20.8203 54.7374 20.3987 53.0563L20.3663 52.6405ZM13.7059 40.8795C18.1723 40.9802 16.0586 42.7397 16.902 46.1017C17.56 48.6837 17.4068 48.3196 19.5038 49.573C21.9453 50.966 25.1183 51.0453 28.1947 49.8775C27.0149 48.0901 26.353 49.231 25.0065 46.3697C23.9343 43.8208 24.4373 43.3202 24.7925 41.4512C26.538 40.8508 26.2769 41.2483 27.7105 40.9239C26.9067 39.6917 24.7208 38.9056 23.3118 37.9315C20.6343 35.6375 22.4327 37.8767 19.1934 34.2477C18.0341 34.8846 15.7424 37.5787 14.6665 38.7525C12.9479 40.7733 13.6417 40.048 13.7059 40.8795ZM9.9734 42.1836L14.1922 43.3917C16.4653 50.152 13.8841 49.1051 20.8602 56.8672C23.3279 59.6802 23.1747 59.3161 26.17 60.3297C27.4955 60.7668 28.2028 60.7517 29.426 60.9462C38.711 63.0014 48.8066 58.8428 44.3454 48.5779C43.7837 47.2427 41.9398 43.8779 40.8051 43.2163L39.7729 42.7973C37.4056 46.6684 33.7429 47.7999 29.5771 49.4316C29.6469 49.2587 29.6469 49.2587 29.5959 49.1375C29.5959 49.1375 29.6659 48.9644 29.6149 48.843C29.5751 46.7132 26.8293 47.3104 26.4833 44.4522C26.4379 43.3265 27.247 43.5541 27.247 43.5541C30.7511 43.0631 31.4528 44.0524 32.1902 41.7345C31.0101 39.9471 27.0391 37.6316 25.286 36.5179C21.092 34.011 20.6701 32.3303 18.5354 31.6656L11.6146 38.6218C10.3857 39.4317 10.3723 38.7217 9.2774 40.1901C8.96539 40.4663 9.15642 40.2417 8.96539 40.4663L9.9734 42.1836ZM17.081 29.5657C16.8767 29.0801 18.2022 29.5172 16.8767 29.0801C16.0164 28.731 15.7554 29.1287 15.4624 29.1103C14.4732 27.0986 15.1049 28.2606 15.3657 27.8632C15.2447 27.9148 15.0216 27.7237 15.0727 27.8451C15.0727 27.8451 14.7796 27.8268 14.5754 27.3414C16.1731 25.3723 15.6473 20.7302 24.4532 12.8274L30.5286 8.95045C32.9491 7.91913 33.6695 8.61402 35.759 8.1533C37.3644 7.89854 41.1215 5.29559 44.7826 10.6058L49.4702 8.17921L50.0887 8.63134C50.2096 8.57983 50.2096 8.57983 50.3817 8.64958L51.1909 8.87739C51.6772 11.3896 51.163 13.8987 50.5141 15.7495C49.1283 19.9182 50.8623 21.3262 49.6145 22.4305C47.4871 23.4801 45.9895 22.9731 43.9511 23.5556C42.3968 23.9315 38.9572 25.254 37.3841 25.9242C36.9245 24.8318 36.8035 24.8833 36.2227 23.8428C36.6747 23.2208 36.8333 22.5806 37.2346 21.8374C37.3554 21.7859 37.3554 21.7859 37.3043 21.6644L38.2972 19.9531C35.7081 17.1919 34.5302 18.1232 33.1725 17.2705L32.9493 17.0793C29.7104 22.61 30.5384 22.5434 29.1905 26.1235C26.7231 32.4706 28.9147 32.2524 23.8354 30.6952C22.5098 30.258 18.4255 29.7084 17.081 29.5657ZM34.4449 14.8675C35.1655 15.5624 34.547 15.1103 35.7519 15.599C36.3888 15.757 36.5612 15.8266 37.1283 16.1576C42.6104 19.6898 40.3865 19.4923 39.8534 22.2958C45.8344 19.8905 43.083 21.492 47.6251 20.4156C47.6441 20.1214 47.6951 20.2426 47.784 19.7753C47.8597 18.5981 47.3622 18.0943 48.1696 15.6038C48.6081 14.2715 49.3398 12.958 49.0392 11.2255C47.6059 11.5497 46.4091 12.7756 44.7147 13.4975C42.9995 11.795 42.0617 9.90466 39.7167 9.7589C37.7294 10.4625 36.126 13.4357 34.4449 14.8675ZM17.3721 26.8654C19.3743 20.4303 25.3778 14.0077 31.5498 11.3779C33.9703 10.3466 34.0534 10.8837 34.7928 11.2843C34.672 11.3358 34.5506 11.3875 34.5506 11.3875C32.1249 13.4229 31.4251 15.1525 30.1016 17.4338C28.657 19.7671 28.1993 21.3933 27.4942 24.1269C26.9855 25.6315 26.2348 27.2397 26.1405 28.711C24.898 28.8112 24.9171 28.5168 23.7635 28.1494C21.6286 27.4848 20.0932 27.5668 18.3534 27.1627L17.3721 26.8654ZM47.3954 45.9901C47.3177 44.4487 49.1177 40.2468 49.9006 39.0546C50.8121 39.5248 51.4949 40.8084 52.7637 42.1283C55.4637 40.4054 55.6283 38.7608 58.1129 38.5611C59.2797 39.6383 60.0966 41.5802 60.7415 43.4523C59.3026 44.7811 58.9849 46.0615 56.7877 47.2839L55.6343 46.9167C55.6343 46.9167 55.6343 46.9167 55.5132 46.9683C55.4622 46.8469 55.4622 46.8469 55.4622 46.8469C55.29 46.7772 55.0669 46.5859 55.0669 46.5859L54.7304 48.1605C54.8138 48.6976 55.2733 49.7899 55.5286 50.3967C53.9608 50.0629 49.2693 47.0524 47.3954 45.9901ZM48.0263 28.8322C49.4672 30.2222 47.8997 29.8881 49.9646 30.7257C51.2902 31.1629 55.7019 34.8651 55.9006 36.355L52.7994 38.8211C52.4044 38.5602 53.0738 39.1338 52.3533 38.4388L50.0707 36.4057C49.9818 36.8731 50.0518 36.7001 49.6188 37.0278C49.6698 37.149 49.4276 37.2522 49.3577 37.4251L49.0459 37.7011C49.3824 36.1264 49.5488 37.2005 48.8283 36.5057C48.6696 37.1458 48.8794 36.6271 48.3766 37.1275C47.1604 38.6476 44.6553 45.5832 44.8918 46.4845L45.8997 48.2019C48.6719 49.0243 49.1692 49.5283 51.7126 51.164C52.9493 52.0683 56.8562 53.5525 57.1302 53.8651C57.2513 53.8135 57.0792 53.7437 57.6841 53.4859C58.3592 53.0553 58.0472 53.3312 58.2194 53.401C58.2819 51.5136 58.365 52.0507 57.6181 49.9358L60.5471 47.3998C61.1198 46.7261 60.7568 46.8808 61.6228 46.2255L61.585 46.8144C61.585 46.8144 61.6361 46.9358 61.5152 46.9873L61.6684 47.3514C61.8347 48.4255 62.4586 47.8733 62.2111 48.9809C62.765 48.6017 62.9371 48.6715 63.3703 48.3437C64.0451 47.913 63.3004 48.5167 63.9242 47.9645C67.2031 44.5638 66.6885 37.9127 64.7802 33.7163C62.1575 27.8208 58.8969 21.7672 54.5119 19.485C52.2258 21.1745 49.0378 26.827 48.0263 28.8322ZM50.5998 28.1653L52.7292 29.8341C53.3986 30.4077 53.9659 30.7384 54.5141 31.3636C55.681 32.4408 56.6566 33.7426 57.7536 34.9927C62.9123 40.8098 60.9684 39.9205 63.5137 44.2748C65.8564 41.7022 63.6799 36.189 61.9248 32.3566C60.1888 28.2301 58.9066 26.2002 55.9738 23.299L54.9091 22.4645L50.5998 28.1653Z" fill="#1C1C1C"/>
+                  </svg>
+                </div>
+              </div>
+              <h2 className={classes.title}>Дякуємо!</h2>
+              <p>Форма успішно відправлена. На ваш телеграм був надісланий номер подачі заявки.</p>
+            </div>
+        )}
+      </div>
   );
 }

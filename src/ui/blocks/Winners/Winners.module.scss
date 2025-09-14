@@ -129,8 +129,10 @@
                 align-items: center;
             }
 
-            button {
+            a {
+                display: block;
                 width: 100%;
+                text-align: center;
 
                 @media screen and (min-width: $toggleDesktop) {
                     max-width: 200px;
