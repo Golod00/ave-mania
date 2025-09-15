@@ -31,6 +31,17 @@
                     top: -15%;
                     left: 0;
                 }
+
+                animation: spinSelf 100s linear infinite;
+
+                @keyframes spinSelf {
+                    from {
+                        transform: rotate(0deg);
+                    }
+                    to {
+                        transform: rotate(360deg);
+                    }
+                }
             }
 
             .iconOne {
