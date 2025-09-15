@@ -40,10 +40,10 @@ export default function Footer() {
                         <div className={classes.wrapBlockLink}>
                             <a 
                                 className={classes.link} 
-                                href="tel:+380504347700" 
+                                href="tel:+380663030130"
                                 rel="nofollow noreferrer"
                             >
-                                +380 50 434 77 00
+                                + 380 66 30 30 130
                             </a>
                             <a 
                                 className={classes.link} 
