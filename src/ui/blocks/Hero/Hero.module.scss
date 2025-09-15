@@ -3,10 +3,6 @@
     min-height: 100vh;
     padding-top: 120px;
     overflow: hidden;
-
-    @media screen and (min-width: $toggleDesktop) {
-        padding-top: 160px;
-    }
     
     .heroImgbgDec {
         display: none;
@@ -14,8 +10,8 @@
         @media screen and (min-width: $toggleDesktop) {
             display: block;
             position: absolute;
+            top: 15%;
             right: 0;
-            bottom: 0;
         }
 
         .bgIconsItem6 {
@@ -24,8 +20,8 @@
             @media screen and (min-width: $toggleDesktop) {
                 display: block;
                 position: absolute;
-                top: 0;
-                right: 10%;
+                top: 32px;
+                right: 7%;
             }
         }
     }
@@ -53,8 +49,8 @@
             gap: 16px;
 
             @media screen and (min-width: $toggleDesktop) {
-                gap: 32px;
-                margin-top: 170px;
+                gap: 25px;
+                margin-top: 123px;
             }
 
             .heroMainImg {
@@ -63,7 +59,7 @@
                 img {
 
                     @media screen and (min-width: $toggleDesktop) {
-                        min-width: 556px;
+                        min-width: 583px;
                     }
                 }
             }
@@ -73,6 +69,7 @@
                 margin: 0 auto;
                 @include p16;
                 font-weight: 800;
+                letter-spacing: -0.1px;
                 color: $color-text;
 
                 @media screen and (min-width: $toggleDesktop) {
@@ -125,8 +122,8 @@
                     @media screen and (min-width: $toggleDesktop) {
                         top: initial;
                         left: initial;
-                        bottom: 8%;
-                        right: 37%;
+                        bottom: 14%;
+                        right: 35%;
                     }
                 }
 
@@ -145,8 +142,8 @@
 
                     @media screen and (min-width: $toggleDesktop) {
                         display: block;
-                        top: -30%;
-                        left: 91%;
+                        top: -21%;
+                        left: 87%;
                     }
                 }
             }
@@ -157,8 +154,8 @@
                 @media screen and (min-width: $toggleDesktop) {
                     display: block;
                     position: absolute;
-                    left: 0;
-                    bottom: 25%;
+                    bottom: 34%;
+                    left: -20px;
                 }
             }
         }
@@ -216,6 +213,7 @@
                 
                 @media screen and (min-width: $toggleDesktop) {
                     max-width: 100%;
+                    left: 45%;
                 }
 
                 .bgIconsItem3 {
@@ -224,8 +222,8 @@
                     @media screen and (min-width: $toggleDesktop) {
                         display: block;
                         position: absolute;
-                        bottom: 29%;
-                        left: -22%;
+                        bottom: 38%;
+                        left: -24%;
                     }
                 }
 
@@ -253,7 +251,7 @@
                     z-index: 1;
 
                     @media screen and (min-width: $toggleDesktop) {
-                        min-width: 638px;
+                        min-width: 672px;
                         min-height: 704px;
                     }
                 }
@@ -267,9 +265,9 @@
 
                     @media screen and (min-width: $toggleDesktop) {
                         min-width: 490px;
-                        min-height: 586px;
+                        min-height: 609px;
                         width: 490px;
-                        right: -14%;
+                        right: -20%;
                     }
                 }
 
@@ -279,8 +277,8 @@
                     @media screen and (min-width: $toggleDesktop) {
                         display: block;
                         position: absolute;
-                        right: -9%;
-                        bottom: 0;
+                        bottom: 15%;
+                        right: -16%;
                         z-index: 2;
                     }
                 }
