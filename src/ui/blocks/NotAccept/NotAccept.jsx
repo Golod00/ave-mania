@@ -13,7 +13,7 @@ export default function NotAccept() {
                         <TextTitle className={classes.item}>
                             <div className={classes.imageWrap}>
                                 <Image
-                                    src="/images/notAccept/photo1.webp"
+                                    src="/images/notAccept/photo-01.webp"
                                     width={295}
                                     height={201}
                                     alt="Image ave mania"
@@ -31,7 +31,7 @@ export default function NotAccept() {
                         <TextTitle className={classes.item}>
                             <div className={classes.imageWrap}>
                                 <Image
-                                    src="/images/notAccept/photo2.webp"
+                                    src="/images/notAccept/photo-02.webp"
                                     width={295}
                                     height={201}
                                     alt="Image ave mania"
@@ -49,7 +49,7 @@ export default function NotAccept() {
                         <TextTitle className={classes.item}>
                             <div className={classes.imageWrap}>
                                 <Image
-                                    src="/images/notAccept/photo3.webp"
+                                    src="/images/notAccept/photo-03.webp"
                                     width={295}
                                     height={201}
                                     alt="Image ave mania"
@@ -67,7 +67,7 @@ export default function NotAccept() {
                          <TextTitle className={classes.item}>
                             <div className={classes.imageWrap}>
                                 <Image
-                                    src="/images/notAccept/photo4.webp"
+                                    src="/images/notAccept/photo-04.webp"
                                     width={295}
                                     height={201}
                                     alt="Image ave mania"
