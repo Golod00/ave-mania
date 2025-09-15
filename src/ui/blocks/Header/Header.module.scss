@@ -24,6 +24,10 @@
     width: 100%;
     padding: 16px 0;
 
+    @media screen and (min-width: $toggleDesktop) {
+        padding: 25px 0 16px 0;
+    }
+
     a {
         svg {
             width: 121px;
