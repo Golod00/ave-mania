@@ -12,49 +12,15 @@ const inter = Inter({
 });
 
 export const metadata = {
-    title: 'Global Events — Організація бізнес-подій в Україні',
-    description:
-        'Найкращі в організації бізнес-подій на заході України. Творчі концепції, складні івенти під ключ, декорації та продакшн.',
+    title: 'AVE MANIA - Сортуй, грай, вигравай',
     keywords: [
-        'організація подій',
-        'івенти Україна',
-        'бізнес-події',
-        'івент-менеджмент',
-        'організація заходів Львів',
-        'Global Events',
+        'Сортуй, грай, вигравай',
     ],
     authors: [{ name: 'Vau.agency' }],
     creator: 'Vau.agency',
     publisher: 'Vau.agency',
     robots: 'index, follow',
-    metadataBase: new URL('https://www.globalevents.lviv.ua/'),
-
-    openGraph: {
-        title: 'Global Events — Організація бізнес-подій в Україні',
-        description:
-            'Найкращі в організації бізнес-подій на заході України. Творчі концепції, складні івенти під ключ, декорації та продакшн.',
-        url: 'https://www.globalevents.lviv.ua/',
-        siteName: 'Global Events',
-        images: [
-            {
-                url: '/images/favicons/512.png',
-                width: 512,
-                height: 512,
-                alt: 'Global Events',
-            },
-        ],
-        locale: 'uk_UA',
-        type: 'website',
-    },
-
-    twitter: {
-        card: 'summary_large_image',
-        title: 'Global Events — Організація бізнес-подій в Україні',
-        description:
-            'Найкращі в організації бізнес-подій на заході України. Творчі концепції, складні івенти під ключ, декорації та продакшн.',
-        images: ['/images/favicons/512.png'],
-        creator: '@globalevents',
-    },
+    // metadataBase: new URL('https://www.globalevents.lviv.ua/'),
 
     icons: {
         icon: [

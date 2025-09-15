@@ -14,11 +14,13 @@ export default function TakeFaten() {
                             height={596}
                             alt="Image ave mania"
                         />
-                    </div>
-                    <div className={classes.itemTwo}>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="152" height="152" viewBox="0 0 152 152" fill="none">
-                            <circle cx="76" cy="76" r="76" fill="#1280C4"/>
-                        </svg>
+                        <div className={classes.orbit}>
+                            <div className={classes.smallPlanet}>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="52" height="52" viewBox="0 0 152 152" fill="none">
+                                    <circle cx="76" cy="76" r="76" fill="#1280C4"/>
+                                </svg>
+                            </div>
+                        </div>
                     </div>
                     <div className={classes.itemThree}>
                         <TextTitle>
