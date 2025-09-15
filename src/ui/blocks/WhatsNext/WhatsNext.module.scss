@@ -1,5 +1,6 @@
 
 .whatsNext {
+    position: relative;
     margin-top: 100px;
     overflow: hidden;
 
@@ -41,11 +42,38 @@
             margin: 32px auto 32px;
         }
 
+        .bgIcon,
+        .bgIconTwo {
+            display: none;
+
+            @media screen and (min-width: $toggleDesktop) {
+                display: block;
+                position: absolute;
+            }
+        }
+
+        .bgIcon {
+
+            @media screen and (min-width: $toggleDesktop) {
+                top: 20%;
+                right: 5%;
+            }
+        }
+
+        .bgIconTwo {
+
+            @media screen and (min-width: $toggleDesktop) {
+                top: 66%;
+                left: 5%;
+            }
+        }
+
         .item {
             position: relative;
             width: 100%;
             min-height: 557px;
             border-radius: 44px;
+            overflow: hidden;
 
             @media screen and (min-width: 570px) {
                 min-height: 150px;
@@ -286,17 +314,6 @@
                             top: 50%;
                             left: -46%;
                         }
-                    }
-                }
-
-                .bgIcon {
-                    display: none;
-
-                    @media screen and (min-width: $toggleDesktop) {
-                        display: block;
-                        position: absolute;
-                        top: -16px;
-                        left: -12%;
                     }
                 }
             }
