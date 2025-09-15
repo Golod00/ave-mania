@@ -20,7 +20,6 @@ export default function VideoBlock() {
         return () => window.removeEventListener('resize', checkScreen);
     }, []);
 
-    // Скрытие контролов через 2 сек
     useEffect(() => {
         let timer;
         if (isDesktop && isPlaying && showControls) {
@@ -28,34 +27,6 @@ export default function VideoBlock() {
         }
         return () => clearTimeout(timer);
     }, [isPlaying, showControls, isDesktop]);
-
-    // GSAP анимация вращения картинок
-    useEffect(() => {
-        if (img1Ref.current && img2Ref.current) {
-            // Вращение большой планеты
-            const rotation1 = gsap.to(img1Ref.current, {
-                rotate: 360,
-                duration: 60,
-                repeat: -1,
-                ease: 'linear',
-                transformOrigin: '50% 50%',
-            });
-
-            // Вращение маленькой планеты внутри большой (противоположное)
-            const rotation2 = gsap.to(img2Ref.current, {
-                rotate: -360,
-                duration: 40,
-                repeat: -1,
-                ease: 'linear',
-                transformOrigin: '50% 50%',
-            });
-
-            return () => {
-                rotation1.kill();
-                rotation2.kill();
-            };
-        }
-    }, []);
 
     const handlePlay = () => {
         if (videoRef.current) {
@@ -87,20 +58,25 @@ export default function VideoBlock() {
     return (
     <section className={classes.videoBlock}>
         <div className={classes.mainWrapper}>
-            <div className={classes.wrapImg1} ref={img1Ref}>
-                <Image
+            <div className={classes.wrapImg1}>
+                <img
                     src="/images/videoBlock/bg1.webp"
                     width={637}
                     height={637}
-                    alt="Image ave mania"
+                    alt="Big planet"
+                    loading="lazy"
                 />
-                <div className={classes.wrapImg2} ref={img2Ref}>
-                    <Image
-                        src="/images/videoBlock/bg2.webp"
-                        width={99}
-                        height={99}
-                        alt="Image ave mania"
-                    />
+
+                <div className={classes.orbit} ref={img2Ref}>
+                    <div className={classes.wrapImg2}>
+                        <img
+                            src="/images/videoBlock/bg2.webp"
+                            width={99}
+                            height={99}
+                            alt="Small planet"
+                            loading="lazy"
+                        />
+                    </div>
                 </div>
             </div>
             <TextTitle className={classes.wrapIcon}>

@@ -127,7 +127,7 @@
         display: none;
 
         @media screen and (min-width: $toggleDesktop) {
-            display: block;
+           display: block;
 
             .bgLeft {
                 position: absolute;
@@ -137,53 +137,95 @@
                     position: relative;
                     width: 596px;
                     height: 596px;
+                    z-index: 10;
 
                     img {
                         width: 100%;
                         height: auto;
-                        animation: spinPlanet 60s linear infinite; // медленное вращение
+                        animation: spinPlanet 120s linear infinite;
                     }
 
-                    // орбита маленькой планеты
                     .orbit {
                         position: absolute;
                         top: 50%;
                         left: 50%;
-                        width: 200px;   // радиус орбиты (меняй)
-                        height: 200px;
-                        margin-left: -100px;
-                        margin-top: -100px;
-                        animation: spinOrbit 20s linear infinite;
+                        width: 0;
+                        height: 0;
+                        transform-origin: center center;
+                        animation: spinOrbit 40s linear infinite;
+                        z-index: -1;
 
                         .smallPlanet {
-                            position: absolute;
-                            top: 0;
-                            left: 50%;
-                            transform: translateX(-50%);
+                            transform: translateX(230px);
+
+                            svg {
+                                width: 152px;
+                                height: 152px;
+                                display: block;
+                            }
                         }
                     }
                 }
+
+                .itemTwo {
+                    position: absolute;
+                    top: 0;
+                    right: -35px;
+                    z-index: -1;
+                }
+
+                .itemThree {
+                    position: absolute;
+                    bottom: 80px;
+                    right: -35px;
+                    z-index: 10;
+                }
             }
-        }
-    }
 
-    // Анимация большой планеты (сама крутится на месте)
-    @keyframes spinPlanet {
-        from {
-            transform: rotate(0deg);
-        }
-        to {
-            transform: rotate(360deg);
-        }
-    }
+            @keyframes spinPlanet {
+                from {
+                    transform: rotate(0deg);
+                }
+                to {
+                    transform: rotate(360deg);
+                }
+            }
 
-    // Анимация маленькой планеты (вращается вокруг)
-    @keyframes spinOrbit {
-        from {
-            transform: rotate(0deg);
-        }
-        to {
-            transform: rotate(-360deg); // минус — для обратного направления
+            @keyframes spinOrbit {
+                from {
+                    transform: rotate(0deg);
+                }
+                to {
+                    transform: rotate(-360deg);
+                }
+            }
+
+
+            .bgRight {
+                position: absolute;
+                bottom: -400px;
+                right: -3%;
+
+                .itemOne {
+                    animation: spinSelf 100s linear infinite;
+
+                    @keyframes spinSelf {
+                        from {
+                            transform: rotate(0deg);
+                        }
+                        to {
+                            transform: rotate(360deg);
+                        }
+                    }
+                }
+
+                .itemTwo {
+                    position: absolute;
+                    top: -50px;
+                    left: -50px;
+                    z-index: 2;
+                }
+            }
         }
     }
 }
