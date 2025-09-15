@@ -44,6 +44,10 @@
                 height: 429px;
             }
 
+            &:hover {
+                filter: brightness(1.1);
+            }
+
             .wrapImg {
                 position: absolute;
                 left: 50%;
@@ -51,7 +55,7 @@
                 bottom: -6px;
 
                 @media screen and (min-width: $toggleDesktop) {
-                    bottom: -12px;
+                    bottom: -2px;
                 }
 
                 img {
@@ -80,7 +84,7 @@
 
             .wrapImgMain {
                 position: absolute;
-                bottom: -13px;
+                bottom: -1px;
                 left: 50%;
                 transform: translateX(-50%);
                 width: 250px;
