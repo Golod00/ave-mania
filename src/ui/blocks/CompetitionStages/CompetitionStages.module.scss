@@ -5,6 +5,7 @@
     overflow-x: clip;
 
     @media screen and (min-width: $toggleDesktop) {
+        margin-top: 170px;
         margin-bottom: 140px;
     }
 
@@ -38,7 +39,7 @@
 
                 @media screen and (min-width: $toggleDesktop) {
                     top: -8%;   
-                    left: 32%;
+                    left: 37%;
                 }
             }
 
@@ -62,7 +63,7 @@
                 @media screen and (min-width: $toggleDesktop) {
                     display: block;
                     position: absolute;
-                    top: -8%;
+                    top: -11%;
                     right: 5%;
                 }
             }
