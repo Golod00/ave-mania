@@ -33,6 +33,10 @@
     }
     scrollbar-width: none;
     -ms-overflow-style: none;
+
+    @media screen and (min-width: $toggleDesktop) {
+      justify-content: center;
+    }
 }
 
 .tab {
@@ -67,6 +71,11 @@
   width: 100%;
   border-collapse: collapse;
 
+  th:nth-child(2),
+  td:nth-child(2) {
+    white-space: nowrap;
+  }
+
   tbody {
     tr {
         border-top: 1px solid #D9D9D9;
@@ -86,28 +95,54 @@
   td {
     padding: 16.5px 20px;
     vertical-align: middle;
+    text-align: left;
     font-family: Inter;
     font-weight: 700;
     font-size: 16px;
+    line-height: 140%;
+    color: #3A3A3A;
   }
 
   th {
     min-width: 170px;
-    text-align: center;
     text-wrap-mode: nowrap;
     font-family: Inter;
     font-weight: 700;
     font-size: 16px;
     color: $color-accent;
     background-color: #FFECED;
+
+    @media screen and (min-width: $toggleDesktop) {
+      min-width: 225px;
+    }
   }
 
   td {
+    min-width: 195px;
     padding: 24px 20px;
-    text-align: center;
 
     @media screen and (min-width: $toggleDesktop) {
+        min-width: auto;
         max-height: 489px;
+    }
+  }
+}
+
+.table_secondary {
+  .table {
+    th {
+      &:first-child {
+        min-width: 330px;
+      }
+
+      &:first-child {
+        min-width: 330px;
+      }
+    }
+    td {
+      @media screen and (min-width: $toggleDesktop) {
+        min-width: auto;
+      }
     }
   }
 }

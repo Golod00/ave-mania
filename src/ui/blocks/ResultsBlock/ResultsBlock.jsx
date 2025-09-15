@@ -8,11 +8,18 @@ export default function ResultsBlock() {
 
   useEffect(() => {
     fetch("/data/results.json")
-      .then((res) => res.json())
-      .then((data) => setDataJson(data));
+        .then((res) => res.json())
+        .then((data) => setDataJson(data));
   }, []);
 
   if (!dataJson) return <p>Завантаження...</p>;
 
-  return <DataTable id="ownProjects" title="Проміжні результати" dataJson={dataJson} />;
+  return (
+      <DataTable
+          id="ownProjects"
+          title="Проміжні результати"
+          dataJson={dataJson}
+          variant="secondary"
+      />
+  );
 }
