@@ -38,11 +38,7 @@ export default function Form() {
     const { name, value } = e.target;
 
     if (name === "phone") {
-      const placeholderDigits = (e.target.placeholder.match(/\d/g) || []).length;
-      const digitsOnly = value.replace(/\D/g, "");
-      if (digitsOnly.length <= placeholderDigits) {
-        setFormData((prev) => ({ ...prev, phone: digitsOnly }));
-      }
+      setFormData((prev) => ({ ...prev, phone: value }));
     } else {
       setFormData((prev) => ({ ...prev, [name]: value }));
     }
@@ -60,13 +56,15 @@ export default function Form() {
         if (!formData.contactPerson) newErrors.contactPerson = "Вкажіть контактну особу";
         if (!formData.position) newErrors.position = "Вкажіть посаду";
 
-        const phoneDigits = formData.phone.replace(/\D/g, "");
-        const phonePlaceholder = document.querySelector('input[name="phone"]')?.placeholder || "";
-        const placeholderDigits = (phonePlaceholder.match(/\d/g) || []).length;
         if (!formData.phone) {
           newErrors.phone = "Вкажіть телефон";
-        } else if (phoneDigits.length !== placeholderDigits) {
-          newErrors.phone = `Телефон повинен містити рівно ${placeholderDigits} цифр`;
+        } else {
+          const digits = formData.phone.replace(/\D/g, ""); // оставляем только цифры
+          // Если есть код страны 38 — убираем его
+          const number = digits.startsWith("38") ? digits.slice(2) : digits;
+          if (number.length !== 10) {
+            newErrors.phone = "Телефон повинен містити рівно 10 цифр";
+          }
         }
 
         if (!formData.email) {
@@ -250,13 +248,27 @@ export default function Form() {
       </div>
       <div className={classes.wrap}>
         <p className={classes.title}>Телефон</p>
+
         <input
             className={classes.input}
             type="tel"
             name="phone"
-            placeholder="+38 097 000 00 00"
+            placeholder="+38 (___) ___-__-__"
             value={formData.phone}
-            onChange={handleChange}
+            onChange={(e) => {
+              const input = e.target;
+              let val = input.value.replace(/\D/g, "");
+              if (val.startsWith("38")) val = val.slice(2);
+              if (val.length > 10) val = val.slice(0, 10);
+
+              let formatted = "+38 ";
+              if (val.length > 0) formatted += `(${val.slice(0, 3)}`;
+              if (val.length >= 4) formatted += `) ${val.slice(3, 6)}`;
+              if (val.length >= 7) formatted += `-${val.slice(6, 8)}`;
+              if (val.length >= 9) formatted += `-${val.slice(8, 10)}`;
+
+              setFormData((prev) => ({ ...prev, phone: formatted }));
+            }}
         />
         {errors.phone && <p className={classes.error}>{errors.phone}</p>}
       </div>

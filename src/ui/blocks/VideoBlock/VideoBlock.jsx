@@ -1,81 +1,107 @@
 'use client';
 
 import { useRef, useState, useEffect } from 'react';
+import gsap from 'gsap';
 import classes from './VideoBlock.module.scss';
 import Image from 'next/image';
 import TextTitle from '@/ui/components/TextTitle';
-
 export default function VideoBlock() {
-  const videoRef = useRef(null);
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [showControls, setShowControls] = useState(false);
-  const [isDesktop, setIsDesktop] = useState(false);
+    const videoRef = useRef(null);
+    const img1Ref = useRef(null); // добавлен
+    const img2Ref = useRef(null); // добавлен
+    const [isPlaying, setIsPlaying] = useState(false);
+    const [showControls, setShowControls] = useState(false);
+    const [isDesktop, setIsDesktop] = useState(false);
 
-  useEffect(() => {
-    const checkScreen = () => setIsDesktop(window.innerWidth >= 1240);
-    checkScreen();
-    window.addEventListener('resize', checkScreen);
-    return () => window.removeEventListener('resize', checkScreen);
-  }, []);
+    useEffect(() => {
+        const checkScreen = () => setIsDesktop(window.innerWidth >= 1240);
+        checkScreen();
+        window.addEventListener('resize', checkScreen);
+        return () => window.removeEventListener('resize', checkScreen);
+    }, []);
 
-  useEffect(() => {
-    let timer;
-    if (isDesktop && isPlaying && showControls) {
-      timer = setTimeout(() => {
-        setShowControls(false);
-      }, 2000);
-    }
-    return () => clearTimeout(timer);
-  }, [isPlaying, showControls, isDesktop]);
-
-  const handlePlay = () => {
-    if (videoRef.current) {
-      videoRef.current.muted = false;
-      videoRef.current.play().then(() => {
-        setIsPlaying(true);
-        if (isDesktop) {
-          setShowControls(true);
+    // Скрытие контролов через 2 сек
+    useEffect(() => {
+        let timer;
+        if (isDesktop && isPlaying && showControls) {
+            timer = setTimeout(() => setShowControls(false), 2000);
         }
-      }).catch(err => console.log("Помилка запуска відео", err));
-    }
-  };
+        return () => clearTimeout(timer);
+    }, [isPlaying, showControls, isDesktop]);
 
-  const handlePause = () => {
-    if (videoRef.current) {
-      videoRef.current.pause();
-      setIsPlaying(false);
-      setShowControls(false);
-    }
-  };
+    // GSAP анимация вращения картинок
+    useEffect(() => {
+        if (img1Ref.current && img2Ref.current) {
+            // Вращение большой планеты
+            const rotation1 = gsap.to(img1Ref.current, {
+                rotate: 360,
+                duration: 60,
+                repeat: -1,
+                ease: 'linear',
+                transformOrigin: '50% 50%',
+            });
 
-  const handleMobileToggle = () => {
-    if (!isDesktop) {
-      if (isPlaying) {
-        handlePause();
-      } else {
-        handlePlay();
-      }
-    }
-  };
+            // Вращение маленькой планеты внутри большой (противоположное)
+            const rotation2 = gsap.to(img2Ref.current, {
+                rotate: -360,
+                duration: 40,
+                repeat: -1,
+                ease: 'linear',
+                transformOrigin: '50% 50%',
+            });
 
-  return (
+            return () => {
+                rotation1.kill();
+                rotation2.kill();
+            };
+        }
+    }, []);
+
+    const handlePlay = () => {
+        if (videoRef.current) {
+            videoRef.current.muted = false;
+            videoRef.current
+                .play()
+                .then(() => {
+                    setIsPlaying(true);
+                    if (isDesktop) setShowControls(true);
+                })
+                .catch(err => console.log('Помилка запуска відео', err));
+        }
+    };
+
+    const handlePause = () => {
+        if (videoRef.current) {
+            videoRef.current.pause();
+            setIsPlaying(false);
+            setShowControls(false);
+        }
+    };
+
+    const handleMobileToggle = () => {
+        if (!isDesktop) {
+            isPlaying ? handlePause() : handlePlay();
+        }
+    };
+
+    return (
     <section className={classes.videoBlock}>
         <div className={classes.mainWrapper}>
-            <div className={classes.wrapImg1}>
+            <div className={classes.wrapImg1} ref={img1Ref}>
                 <Image
                     src="/images/videoBlock/bg1.webp"
                     width={637}
                     height={637}
                     alt="Image ave mania"
                 />
-            </div>
-            <div className={classes.wrapImg2}>
-                <Image
-                    src="/images/videoBlock/bg2.webp"
-                    width={99}
-                    height={99}
-                    alt="Image ave mania"
-                />
+                <div className={classes.wrapImg2} ref={img2Ref}>
+                    <Image
+                        src="/images/videoBlock/bg2.webp"
+                        width={99}
+                        height={99}
+                        alt="Image ave mania"
+                    />
+                </div>
             </div>
             <TextTitle className={classes.wrapIcon}>
                <svg xmlns="http://www.w3.org/2000/svg" width="57" height="57" viewBox="0 0 57 57" fill="none">
