@@ -3,28 +3,6 @@
     min-height: 100vh;
     padding-top: 120px;
     overflow: hidden;
-    
-    .heroImgbgDec {
-        display: none;
-
-        @media screen and (min-width: $toggleDesktop) {
-            display: block;
-            position: absolute;
-            top: 15%;
-            right: 0;
-        }
-
-        .bgIconsItem6 {
-            display: none;
-
-            @media screen and (min-width: $toggleDesktop) {
-                display: block;
-                position: absolute;
-                top: 32px;
-                right: 7%;
-            }
-        }
-    }
 
     .title {
         min-width: 180px;
@@ -65,7 +43,7 @@
             }
 
             .title {
-                max-width: 180px;
+                max-width: 190px;
                 margin: 0 auto;
                 @include p16;
                 font-weight: 800;
@@ -162,24 +140,80 @@
 
         .heroImg {
             position: relative;
-            max-height: 352px;
+            max-width: 350px;
+            min-height: 352px;
+            width: 100%;
+            margin: 0 auto;
 
             @media screen and (min-width: $toggleDesktop) {
-                max-height: 100%;
-                width: 100%;
+                max-width: 100%;
             }
 
             .heroImgbg {
-                position: relative;
-                margin-right: -16px;
-                margin-bottom: -50px;
 
-                @media screen and (min-width: 768px) {
-                    transform: rotate(30deg);
+                .heroImgbg1 {
+                    position: absolute;
+                    right: 0;
+
+                    img {
+                        width: 132px;
+                        animation: spinSelf 100s linear infinite;
+
+                        @media screen and (min-width: $toggleDesktop) {
+                            width: 301px;
+                        }
+                    }
+
+                    .bgIconsItem3 {
+                        @media screen and (min-width: $toggleDesktop) {
+                            display: none;
+                        }
+                    }
+
+                    .bgIconsItem6 {
+                        display: none;
+
+                        @media screen and (min-width: $toggleDesktop) {
+                            display: block;
+                            position: absolute;
+                            top: 14%;
+                            right: -6%;
+                        }
+                    }
                 }
 
-                @media screen and (min-width: $toggleDesktop) {
-                   display: none;
+                .heroImgbg2 {
+                    position: absolute;
+                    left: -5%;
+                    bottom: -10%;
+                    animation: spinSelf 120s linear infinite;
+
+                    img {
+                        width: 262px;
+
+                        @media screen and (min-width: $toggleDesktop) {
+                            width: 596px;
+                        }
+                    }
+                }
+
+                .heroImgbg3 {
+                    position: absolute;
+                    bottom: 0;
+                    right: -5%;
+                    animation: spinSelf 100s linear infinite;
+
+                    @media screen and (min-width: $toggleDesktop) {
+                        right: -35%;
+                    }
+
+                    img {
+                        width: 262px;
+
+                        @media screen and (min-width: $toggleDesktop) {
+                            width: 596px;
+                        }
+                    }
                 }
 
                 .bgIconsItem3 {
@@ -187,6 +221,11 @@
                     top: -20px;
                     right: 0;
                     z-index: 1;
+
+                    svg {
+                        width: 69px;
+                        height: 60px;
+                    }
 
                     @media screen and (min-width: 768px) {
                         top: -50px; 
@@ -197,6 +236,15 @@
                         right: 20px;
                         bottom: 14%;
                     }
+                }
+            }
+
+            @keyframes spinSelf {
+                from {
+                    transform: rotate(0deg);
+                }
+                to {
+                    transform: rotate(360deg);
                 }
             }
 
@@ -281,14 +329,6 @@
                         right: -16%;
                         z-index: 2;
                     }
-                }
-            }
-
-            img {
-
-                @media screen and (min-width: $toggleDesktop) {
-                    min-width: 947px;
-                    min-height: 893px;
                 }
             }
         }

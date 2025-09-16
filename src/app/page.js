@@ -16,32 +16,28 @@ import WhatsNext from '@/ui/blocks/WhatsNext/WhatsNext';
 import VideoBlock from '@/ui/blocks/VideoBlock/VideoBlock';
 import Footer from '@/ui/blocks/Footer';
 
-import fs from 'fs';
-import path from 'path';
-
 export default async function Home() {
-    const filePath = path.join(process.cwd(), 'public/data/cases.json');
-    const jsonData = fs.readFileSync(filePath, 'utf-8');
-    const casesData = JSON.parse(jsonData);
 
     return (
         <>
             <Header />
-            <Hero />
-            <TakeFaten />
-            <CategoryBlock />
-            <CompetitionStages />
-            <CategoriesWorkers />
-            <ParticipantsBlock />
-            <ResultsBlock />
-            <Winners />
-            <Prizes />
-            <FormBlock />
-            <SortingRules />
-            <MarkingPlastic />
-            <NotAccept />
-            <WhatsNext />
-            <VideoBlock />
+            <main>
+                <Hero />
+                <TakeFaten />
+                <CategoryBlock />
+                <CompetitionStages />
+                <CategoriesWorkers />
+                <ParticipantsBlock />
+                <ResultsBlock />
+                <Winners />
+                <Prizes />
+                <FormBlock />
+                <SortingRules />
+                <MarkingPlastic />
+                <NotAccept />
+                <WhatsNext />
+                <VideoBlock />
+            </main>
             <Footer />
         </>
     );

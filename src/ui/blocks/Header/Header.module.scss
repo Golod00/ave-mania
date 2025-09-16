@@ -70,7 +70,7 @@
     background: #fff;
     opacity: 0;
     overflow: hidden;
-    z-index: 10;
+    z-index: 200;
 
     &.active {
         transform: translateY(0);

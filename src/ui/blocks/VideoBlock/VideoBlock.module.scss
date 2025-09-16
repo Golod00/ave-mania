@@ -1,27 +1,37 @@
 .videoBlock {
     position: relative;
     margin-top: 179px;
+    padding-bottom: 168px;
     overflow: visible;
 
     @media screen and (min-width: $toggleDesktop) {
         margin-top: 236px;
+        padding-bottom: 156px;
     }
 
     .mainWrapper {
         position: absolute;
-        bottom: -40%;
+        bottom: 0;
         left: -30%;
         z-index: -1;
 
         @media screen and (min-width: $toggleDesktop) {
-            left: 0;
-            bottom: -20%;
+            left: -10px;
         }
 
         .wrapImg1 {
             position: relative;
-            width: 637px;
-            height: 637px;
+            width: 305px;
+            height: 305px;
+
+            @media screen and (min-width: 768px) {
+                width: 450px;
+                height: 450px;
+            }
+            @media screen and (min-width: $toggleDesktop) {
+                width: 637px;
+                height: 637px;
+            }
 
             img {
                 width: 100%;
@@ -41,11 +51,27 @@
             }
 
             .wrapImg2 {
-                transform: translateX(220px);
+                transform: translateX(100px);
+
+                @media screen and (min-width: 768px) {
+                    transform: translateX(150px);
+                }
+                @media screen and (min-width: $toggleDesktop) {
+                    transform: translateX(220px);
+                }
+
                 img {
-                    width: 99px;
-                    height: 99px;
-                    display: block;
+                    width: 48px;
+                    height: 48px;
+
+                    @media screen and (min-width: 768px) {
+                        width: 65px;
+                        height: 65px;
+                    }
+                    @media screen and (min-width: $toggleDesktop) {
+                        width: 99px;
+                        height: 99px;
+                    }
                 }
             }
         }
