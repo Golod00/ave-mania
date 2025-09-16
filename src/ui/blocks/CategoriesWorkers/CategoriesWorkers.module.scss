@@ -178,6 +178,7 @@
             position: absolute;
             right: -20%;
             bottom: -70%;
+            z-index: -1;
             animation: spinSelf 100s linear infinite;
 
             @media screen and (min-width: 2000px) {

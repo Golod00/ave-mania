@@ -120,7 +120,7 @@ export default function Hero() {
                             <div className={classes.heroImgbg2}>
                                 <Image
                                     className={classes.bg}
-                                    src="/images/hero/bgMain2.webp"
+                                    src="/images/hero/bgMain3.webp"
                                     width={596}
                                     height={596}
                                     alt="Image ave mania"
@@ -129,7 +129,7 @@ export default function Hero() {
                             <div className={classes.heroImgbg3}>
                                 <Image
                                     className={classes.bg}
-                                    src="/images/hero/bgMain3.webp"
+                                    src="/images/hero/bgMain2.webp"
                                     width={596}
                                     height={596}
                                     alt="Image ave mania"
