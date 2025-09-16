@@ -1,10 +1,6 @@
 import { Inter } from 'next/font/google';
 import 'reset-css';
 import '@/styles/globals.scss';
-import { ModalProvider } from '@/ui/contexts/ModalContext';
-import Modal from '@/ui/blocks/Modal';
-import fs from 'fs';
-import path from 'path';
 
 const inter = Inter({
     subsets: ['latin'],
@@ -51,17 +47,10 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
-    const filePath = path.join(process.cwd(), 'public/data/cases.json');
-    const jsonData = fs.readFileSync(filePath, 'utf-8');
-    const casesData = JSON.parse(jsonData);
-
     return (
         <html lang="uk">
             <body className={`${inter.variable}`}>
-                <ModalProvider>
-                    {children}
-                    <Modal globalCasesData={casesData} />
-                </ModalProvider>
+                {children}
             </body>
         </html>
     );

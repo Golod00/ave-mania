@@ -10,7 +10,7 @@ export default function NotAccept() {
 
                 <div className={classes.wrapper}>
                     <div className={classes.wrapperContent}>
-                        <TextTitle className={classes.item}>
+                        <div className={classes.item}>
                             <div className={classes.imageWrap}>
                                 <Image
                                     src="/images/notAccept/photo-01.webp"
@@ -26,8 +26,8 @@ export default function NotAccept() {
                                     Будь-які вироби з PVC-3 (ПВХ), C/LDPE, CPE або PE-C. Тетрапак C/PAP; твердий пластик(з автомобілів чи дитячих іграшок); кульки усіх кольорів; шуршики - плівка або упаковка, яка шуршить при стисканні; упаковки з чіпсів, цукерок, шоколадок, майонезу, кетчупу; упаковки з фольгою або білі всередині;
                                 </p>
                             </div>
-                        </TextTitle>
-                        <TextTitle className={classes.item}>
+                        </div>
+                        <div className={classes.item}>
                             <div className={classes.imageWrap}>
                                 <Image
                                     src="/images/notAccept/photo-02.webp"
@@ -43,8 +43,8 @@ export default function NotAccept() {
                                     Підвіконня; плінтуси; інші пластикові будівельні та меблеві деталі; пластикові банківські чи дисконтні картки; віконні рами; дощовики та інший водонепронектий спецодяг; лінолеум; намети; плащі; парасолі; матраци; круги надувні; для плавання; басейни; шини; вінілові платівки; банери; вироби з резини та резина; душові штори; інші речі з маркуванням “3 PVC”
                                 </p>
                             </div>
-                        </TextTitle>
-                        <TextTitle className={classes.item}>
+                        </div>
+                        <div className={classes.item}>
                             <div className={classes.imageWrap}>
                                 <Image
                                     src="/images/notAccept/photo-03.webp"
@@ -60,8 +60,8 @@ export default function NotAccept() {
                                     Лампочки; термометри; фарбоване скло; кераміку; посуд керамічний; кружки та інше; дзеркала; термоскло; гартоване скло; захисне скло для гаджетів; склопакети; батарейки
                                 </p>
                             </div>
-                        </TextTitle>
-                        <TextTitle className={classes.item}>
+                        </div>
+                        <div className={classes.item}>
                             <div className={classes.imageWrap}>
                                 <Image
                                     src="/images/notAccept/photo-04.webp"
@@ -77,7 +77,7 @@ export default function NotAccept() {
                                     Туалетний папір; труби з під чіпсів; використані серветки
                                 </p>
                             </div>
-                        </TextTitle>
+                        </div>
                     </div>
                 </div>
             </div>
