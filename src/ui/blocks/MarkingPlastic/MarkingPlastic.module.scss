@@ -9,32 +9,81 @@
     }
 
     .bgWrap {
-        position: absolute;
-        top: 176px;
-        left: 0;
-        z-index: -1;
 
         @media screen and (min-width: 768px) {
-            top: 70px;
+
         }
 
         @media screen and (min-width: $toggleDesktop) {
-            top: 170px;
+
+        }
+
+        .bgWrapImage1 {
+            position: absolute;
+            top: 10%;
+            left: -40%;
+            z-index: -2;
+            animation: spinSelf 100s linear infinite;
+
+            @media screen and (min-width: 768px) {
+                top: 7%;
+                left: -20%;
+            }
+
+            @media screen and (min-width: $toggleDesktop) {
+                top: 15%;
+            }
 
             img {
-                max-height: 596px;
-                object-fit: contain;
+                width: 259px;
+
+                @media screen and (min-width: $toggleDesktop) {
+                    width: 696px;
+                }
+            }
+        }
+
+        .bgWrapImage2 {
+            position: absolute;
+            top: 15%;
+            left: -5%;
+            z-index: -1;
+
+            @media screen and (min-width: 768px) {
+                left: 0;
+            }
+
+            @media screen and (min-width: $toggleDesktop) {
+                top: 40%;
+            }
+
+            img {
+                width: 170px;
+                animation: spinSelf 90s linear infinite;
+
+                @media screen and (min-width: $toggleDesktop) {
+                    width: 550px;
+                }
+            }
+        }
+
+        @keyframes spinSelf {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
             }
         }
 
         .iconWrap {
             position: absolute;
-            bottom: 24px;
-            right: 4px;
+            bottom: 30px;
+            right: 31px;
 
             @media screen and (min-width: $toggleDesktop) {
-                bottom: -34px;
                 right: 36%;
+                bottom: 61px;
 
                 svg {
                     width: 57px;
@@ -49,8 +98,8 @@
             @media screen and (min-width: $toggleDesktop) {
                 display: block;
                 position: absolute;
-                top: 32%;
-                right: 20px;
+                top: 16%;
+                right: 85px;
             }
         }
 
@@ -60,8 +109,8 @@
             @media screen and (min-width: $toggleDesktop) {
                 display: block;
                 position: absolute;
-                top: 41%;
-                left: 22%;
+                top: 20%;
+                left: 100px;
             } 
         }
     }
